@@ -1,0 +1,55 @@
+/* src/pages/CreateSessao.css */
+
+.create-sessao-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh; /* Ocupa toda a altura da tela */
+    background-color: white; /* Fundo branco */
+    padding: 20px;
+    flex-grow: 1; /* Faz o container ocupar o espaço restante ao lado da Sidebar */
+}
+
+.form-title {
+    margin-bottom: 20px;
+    text-align: center;
+    color: red; /* Cor vermelha para o título */
+}
+
+.create-sessao-form {
+    display: flex;
+    flex-direction: column;
+    background-color: white; /* Fundo branco do formulário */
+    padding: 20px;
+    border: 1px solid red; /* Borda vermelha */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 300px; /* Largura do formulário */
+}
+
+.create-sessao-form input,
+.create-sessao-form button {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid red; /* Borda vermelha */
+    border-radius: 4px; /* Bordas arredondadas */
+}
+
+.create-sessao-form button {
+    background-color: red; /* Fundo vermelho do botão */
+    color: white; /* Texto do botão branco */
+    cursor: pointer;
+}
+
+.back-button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Faz o conteúdo ocupar o espaço disponível */
+}

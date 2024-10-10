@@ -1,0 +1,50 @@
+/* src/components/UpdateEleitor.css */
+
+.create-presenca-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: white;
+    color: red;
+    padding: 20px;
+}
+
+.form-title {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.create-presenca-form {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid red;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 300px;
+}
+
+.create-presenca-form input,
+.create-presenca-form button {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid red;
+    border-radius: 4px;
+}
+
+.create-presenca-form button {
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}
+
+.back-button {
+    margin-top: 10px;
+    background-color: transparent;
+    border: none;
+    color: red;
+    cursor: pointer;
+}

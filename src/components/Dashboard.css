@@ -1,0 +1,16 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .dashboard-content {
+    display: flex;
+    flex: 1;
+  }
+  
+  .main-area {
+    flex: 1;
+    padding: 20px;
+  }
+  

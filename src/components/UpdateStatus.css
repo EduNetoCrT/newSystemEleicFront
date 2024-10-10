@@ -1,0 +1,64 @@
+/* src/components/UpdateStatus.css */
+
+.update-status-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alinhamento na parte superior */
+    align-items: center;
+    min-height: 100vh; /* Garante que a altura mínima seja 100% da viewport */
+    padding-top: 50px; /* Espaçamento superior para não ficar colado no topo */
+    background-color: white;
+    color: red;
+    padding: 20px;
+}
+
+.form-title {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 18px; /* Tamanho de fonte ajustado */
+}
+
+.update-status-form {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid red;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 300px;
+}
+
+.update-status-form input,
+.update-status-form button,
+.update-status-form select {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid red;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.update-status-form button {
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 10px;
+}
+
+.back-button {
+    margin-top: 10px;
+    background-color: transparent;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 10px;
+    text-align: center;
+}
