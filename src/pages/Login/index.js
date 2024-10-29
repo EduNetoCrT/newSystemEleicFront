@@ -1,13 +1,25 @@
-// src/components/Login.js
-import React, { useState } from 'react';
 import './Login.css';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
+
 
 function Login() {
+  const { user, login } = useAuth();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     section: '',
   });
+
+  useEffect(() => {
+    // Redireciona para o dashboard se o usuário já estiver logado
+    if (user) {
+      navigate('/');
+    }
+  }, [user, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,10 +29,17 @@ function Login() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aqui você pode adicionar a lógica para enviar os dados do formulário
-    console.log(formData);
+    const { email, password, section } = formData;
+
+    // Tenta fazer login com os dados fornecidos
+    const success = await login(email, password, section);
+    if (success) {
+      navigate('/'); // Redireciona para o dashboard após login bem-sucedido
+    } else {
+      alert('Credenciais inválidas'); // Exibe alerta em caso de falha no login
+    }
   };
 
   return (
@@ -48,7 +67,6 @@ function Login() {
           name="section" 
           placeholder="Seção" 
           onChange={handleChange} 
-          required 
           value={formData.section} 
         />
         <button type="submit">Entrar</button>

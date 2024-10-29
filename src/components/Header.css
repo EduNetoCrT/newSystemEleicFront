@@ -1,15 +1,36 @@
 .header {
-    background-color: red; /* Mudando para vermelho */
-    color: white; /* Texto branco */
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .logo {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
+  background-color: red; /* Mudando para vermelho */
+  color: white; /* Texto branco */
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Alinha a logo à esquerda e as informações do usuário à direita */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-name {
+  margin-right: 10px;
+}
+
+.logout-button {
+  background-color: white;
+  color: red;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background-color: #ddd;
+}

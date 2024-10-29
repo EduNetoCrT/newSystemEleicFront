@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './ListEleitores.css'; // Importando o CSS
 import { useNavigate } from 'react-router-dom'; // Para navegação
 

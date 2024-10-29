@@ -1,14 +1,12 @@
 import React from 'react';
 import './Dashboard.css';
-import Header from './Header';
-import Sidebar from './Sidebar';
 
 function Dashboard() {
   return (
     <div className="dashboard">
-      <Header />
+      {/* <Header /> */}
       <div className="dashboard-content">
-        <Sidebar />
+        {/* <Sidebar /> */}
         <div className="main-area">
           <h2>BEM VINDO AO CONTROLE DE PRESENÇA 
             CAIXA BENEFICENTE PM/BM

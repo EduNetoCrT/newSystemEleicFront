@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './UpdateStatus.css'; // Importando o CSS atualizado
 
 function UpdateStatus() {

@@ -1,5 +1,5 @@
 // src/components/Sidebar.js
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Sidebar.css';
 import logo from '../assets/logo_2.png'; // Ajuste o caminho conforme necessário
@@ -47,9 +47,9 @@ function Sidebar() {
         <span className={`expand-icon ${expandedSection === 'usuarios' ? '' : 'collapsed'}`}>&#9654;</span>USUÁRIOS
       </h3>
       <ul style={{ display: expandedSection === 'usuarios' ? 'block' : 'none' }}>
-        <li><Link to="/create-usuario">NOVO USUÁRIO</Link></li>
-        <li><Link to="/edit-usuario">EDITAR USUÁRIO</Link></li>
-        <li><Link to="/list-usuarios">LISTAR USUÁRIOS</Link></li>
+        <li><Link to="/novo-usuario">NOVO USUÁRIO</Link></li>
+        <li><Link to="/editar-usuario">EDITAR USUÁRIO</Link></li>
+        <li><Link to="/listar-usuarios">LISTAR USUÁRIOS</Link></li>
       </ul>
     </div>
   );

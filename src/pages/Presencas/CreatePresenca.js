@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Header from './Header';
 import './CreatePresenca.css';
-import Sidebar from './Sidebar'; // Importando o componente Sidebar
 
 function CreatePresenca() {
   const [formData, setFormData] = useState({
