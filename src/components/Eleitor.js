@@ -79,7 +79,6 @@ function CreateEleitor() {
 
   return (
     <div>
-      <Header />
       <div className="create-eleitor-container">
         <h2 className="form-title">{isEditing ? 'Atualizar Eleitor' : 'Cadastrar Eleitor'}</h2>
         <form className="create-eleitor-form" onSubmit={handleSubmit}>
