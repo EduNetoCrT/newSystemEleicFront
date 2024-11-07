@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-image: url('../assets/logo_2.png'); /* Substitua pelo caminho da sua imagem */
+  background-image: url('../../assets/logo_2.png'); /* Substitua pelo caminho da sua imagem */
   background-size: cover;
   background-position: center;
   position: relative;

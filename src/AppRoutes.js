@@ -1,7 +1,6 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 
-import Login from "./components/Login";
 import SidebarLayout from "./components/layouts/SidebarLayout";
 import Dashboard from "./components/Dashboard";
 import CreateEleitor from "./components/CreateEleitor";
@@ -15,6 +14,7 @@ import UpdateStatus from "./components/UpdateStatus";
 import UpdateEleitor from "./components/UpdateEleitor";
 import NotFound from "./pages/system/NotFound/NotFound";
 import NotImplemented from "./pages/system/NotImplemented/NotImplemented";
+import Login from "./pages/Auth/Login";
 
 
 function AppRoutes() {

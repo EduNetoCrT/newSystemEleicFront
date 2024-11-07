@@ -1,25 +1,24 @@
-// src/components/Login.js
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './Login.css';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext'; // Ajuste o caminho conforme necessário
+import { useAuth } from '../../context/AuthContext';
+import { loginService } from '../../services/authService'; // Importa o serviço de autenticação
 
 function Login() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const navigate = useNavigate();
-  const { login } = useAuth(); // Usa a função de login do contexto
+  const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3001/login', { email, password: senha });
-      login(response.data.token); // Chama a função de login do contexto para atualizar o estado
-      navigate('/'); // Redireciona para a home
-    } catch (error) {
-      console.error('Erro ao fazer login:', error);
-      alert('Login falhou: ' + (error.response?.data?.message || 'Erro desconhecido'));
+      const data = await loginService(email, senha);
+      login(data.token); // Atualiza o estado de autenticação no contexto com o token
+      navigate('/'); // Redireciona para a página inicial
+    } catch (errorMessage) {
+      console.error('Erro ao fazer login:', errorMessage);
+      alert('Login falhou: ' + errorMessage);
     }
   };
 
