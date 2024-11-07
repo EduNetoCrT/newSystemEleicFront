@@ -8,43 +8,46 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
 
-  const login = () => setIsAuthenticated(true);
+  const login = (token) => {
+    try {
+      const decodedToken = jwtDecode(token);
+      setUser({
+        name: decodedToken.name || "Usuário",
+        secao: decodedToken.secao || "N/A",
+      });
+      setIsAuthenticated(true);
+      localStorage.setItem("token", token);
+    } catch (error) {
+      console.error("Erro ao decodificar o token:", error);
+      logout();
+    }
+  };
 
   const logout = () => {
-    localStorage.removeItem("user");
+    localStorage.removeItem("token");
     setIsAuthenticated(false);
     setUser(null);
   };
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
 
-    if (storedUser) {
-      const { token } = JSON.parse(storedUser);
-
-      if (token) {
-        try {
-          const decodedToken = jwtDecode(token);
-
-          setUser({
-            name: decodedToken.name || "Usuário",
-            secao: decodedToken.secao || "N/A",
-          });
-
-          setIsAuthenticated(true);
-        } catch (error) {
-          console.error("Erro ao decodificar o token:", error);
-          logout(); // Faz logout se o token for inválido
-        }
+    if (token) {
+      try {
+        login(token);
+      } catch (error) {
+        console.error("Erro ao restaurar sessão de usuário:", error);
+        logout(); // Se o token for inválido, faça logout
       }
     }
-
     setLoading(false);
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, login, logout, loading }}>
-      {children}
+    <AuthContext.Provider
+      value={{ isAuthenticated, user, login, logout, loading }}
+    >
+      {!loading && children}
     </AuthContext.Provider>
   );
 }
