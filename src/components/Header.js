@@ -1,19 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import {jwtDecode} from 'jwt-decode';  // Corrigido o nome da importação
-import './Header.css';
+import React, { useState, useEffect } from "react";
+import { jwtDecode } from "jwt-decode"; // Importação nomeada para jwtDecode
+import "./Header.css";
 
 function Header() {
-  const [userName, setUserName] = useState('');
-  const [userSecao, setUserSecao] = useState('');
+  const [userName, setUserName] = useState("");
+  const [userSecao, setUserSecao] = useState("");
 
   useEffect(() => {
-    // Obtendo o token do armazenamento local (ou de outro local, dependendo de onde você o salva)
-    const token = localStorage.getItem('token');  // Ou o método que você usa para armazenar o token
-    if (token) {
-      // Decodificando o token para extrair as informações do usuário
-      const decodedToken = jwtDecode(token);  // Usando jwtDecode com "D" maiúsculo
-      setUserName(decodedToken.name);  // Nome do usuário
-      setUserSecao(decodedToken.secao);  // Sessão do usuário
+    const token = localStorage.getItem("token");
+    
+    if (token && token.split('.').length === 3) {  // Verifica se o token está no formato JWT
+      try {
+        const decodedToken = jwtDecode(token);
+        setUserName(decodedToken.name || "Usuário"); // Nome do usuário ou valor padrão
+        setUserSecao(decodedToken.secao || "N/A"); // Sessão do usuário ou valor padrão
+      } catch (error) {
+        console.error("Erro ao decodificar o token:", error);
+      }
+    } else {
+      console.warn("Token inválido ou ausente");
     }
   }, []);
 

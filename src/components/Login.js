@@ -3,20 +3,20 @@ import React, { useState } from 'react';
 import './Login.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext'; // Ajuste o caminho conforme necessário
 
 function Login() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const navigate = useNavigate();
+  const { login } = useAuth(); // Usa a função de login do contexto
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:3001/login', { email, password: senha });
-      localStorage.setItem('token', response.data.token);
-      localStorage.setItem('name', response.data.name);
-      localStorage.setItem('secao', response.data.secao);
-      navigate('/'); // Redireciona para o dashboard
+      login(response.data.token); // Chama a função de login do contexto para atualizar o estado
+      navigate('/'); // Redireciona para a home
     } catch (error) {
       console.error('Erro ao fazer login:', error);
       alert('Login falhou: ' + (error.response?.data?.message || 'Erro desconhecido'));

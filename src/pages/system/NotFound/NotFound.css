@@ -1,0 +1,35 @@
+.not-found-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: white;
+    padding: 20px;
+}
+
+.not-found-title {
+    font-size: 5rem;
+    color: red; /* Cor do título em vermelho */
+    text-align: center;
+}
+
+.not-found-message {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333; /* Texto cinza */
+    font-size: 1.5rem;
+}
+
+.not-found-link {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: red;
+    color: white;
+    border: 1px solid red;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
+    text-align: center;
+}
