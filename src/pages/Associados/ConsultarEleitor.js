@@ -1,33 +1,28 @@
-// src/components/ConsultarEleitor.js
-import { useState } from 'react';
-import './ConsultarEleitor.css'; // Importando o CSS
+import { useState } from "react";
+import "./ConsultarEleitor.css";
+import { getAssociadoByMatricula } from "../../services/associadoService"; // Importa o serviço
 
 function ConsultarEleitor() {
-  const [matricula, setMatricula] = useState('');
+  const [matricula, setMatricula] = useState("");
   const [eleitor, setEleitor] = useState(null);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:3001/eleitores/${matricula}`);
-      if (response.ok) {
-        const data = await response.json();
-        setEleitor(data);
-        setMessage(''); // Limpa a mensagem de erro
-      } else {
-        setMessage('Eleitor não encontrado');
-        setEleitor(null);
-      }
+      const data = await getAssociadoByMatricula(matricula); // Usa o serviço para buscar o associado
+      setEleitor(data);
+      setMessage(""); // Limpa a mensagem de erro
     } catch (error) {
-      setMessage('Erro na requisição');
+      setMessage(error.message); // Exibe a mensagem de erro
+      setEleitor(null);
     }
   };
 
   return (
     <div className="consultar-eleitor-container">
       <h2 className="form-title">Consultar Eleitor</h2>
-      
+
       <form onSubmit={handleSearch} className="consultar-eleitor-form">
         <input
           type="text"
@@ -45,8 +40,12 @@ function ConsultarEleitor() {
           <input type="text" value={eleitor.nome} readOnly />
           <input type="text" value={eleitor.cpf} readOnly />
           <input type="text" value={eleitor.patente} readOnly />
-          <input type="text" value={eleitor.status} readOnly /> {/* Exibindo o status como texto */}
-          <input type="text" value={eleitor.votou ? 'Confirmado' : 'Não Confirmado'} readOnly />
+          <input type="text" value={eleitor.status} readOnly />
+          <input
+            type="text"
+            value={eleitor.votou ? "Confirmado" : "Não Confirmado"}
+            readOnly
+          />
         </div>
       )}
 

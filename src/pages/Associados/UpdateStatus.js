@@ -1,55 +1,38 @@
-// src/components/UpdateStatus.js
-import { useState } from 'react';
-import './UpdateStatus.css'; // Importando o CSS atualizado
+import { useState } from "react";
+import "./UpdateStatus.css";
+import {
+  getAssociadoByMatricula,
+  updateAssociadoStatus,
+} from "../../services/associadoService";
 
 function UpdateStatus() {
-  const [matricula, setMatricula] = useState('');
+  const [matricula, setMatricula] = useState("");
   const [eleitor, setEleitor] = useState(null);
-  const [status, setStatus] = useState('');
-  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [modalMessage, setModalMessage] = useState('');
+  const [modalMessage, setModalMessage] = useState("");
 
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:3001/eleitores/${matricula}`);
-      if (response.ok) {
-        const data = await response.json();
-        setEleitor(data);
-        setStatus(data.status); // Preenche o status atual
-        setMessage('');
-      } else {
-        setModalMessage('Eleitor não encontrado');
-        setShowModal(true);
-        setEleitor(null);
-      }
+      const data = await getAssociadoByMatricula(matricula);
+      setEleitor(data);
+      setStatus(data.status);
     } catch (error) {
-      setModalMessage('Erro na requisição');
+      setModalMessage(error.message);
       setShowModal(true);
+      setEleitor(null);
     }
   };
 
   const handleUpdateStatus = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:3001/eleitores/status`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ matricula, status }),
-      });
-
-      if (response.ok) {
-        setModalMessage('Status atualizado com sucesso!');
-        setShowModal(true);
-      } else {
-        setModalMessage('Erro ao atualizar status');
-        setShowModal(true);
-      }
+      await updateAssociadoStatus(matricula, status);
+      setModalMessage("Status atualizado com sucesso!");
+      setShowModal(true);
     } catch (error) {
-      setModalMessage('Erro na requisição');
+      setModalMessage(error.message);
       setShowModal(true);
     }
   };
@@ -61,7 +44,7 @@ function UpdateStatus() {
   return (
     <div className="update-status-container">
       <h2 className="form-title">Alterar Status do Eleitor</h2>
-      
+
       <form onSubmit={handleSearch} className="update-status-form">
         <input
           type="text"
@@ -79,8 +62,12 @@ function UpdateStatus() {
           <input type="text" value={eleitor.nome} readOnly />
           <input type="text" value={eleitor.cpf} readOnly />
           <input type="text" value={eleitor.patente} readOnly />
-          
-          <select value={status} onChange={(e) => setStatus(e.target.value)} required>
+
+          <select
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+            required
+          >
             <option value="APTO">APTO</option>
             <option value="INAPTO">INAPTO</option>
           </select>
@@ -88,8 +75,6 @@ function UpdateStatus() {
           <button type="submit">Atualizar Status</button>
         </form>
       )}
-
-      {message && <p className="error-message">{message}</p>}
 
       {showModal && (
         <div className="modal">

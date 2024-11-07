@@ -3,19 +3,18 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 import SidebarLayout from "./components/layouts/SidebarLayout";
 import Dashboard from "./components/Dashboard";
-import CreateEleitor from "./components/CreateEleitor";
-import CreateUser from "./pages/Users/CreateUser";
 import CreatePresenca from "./components/CreatePresenca";
 import CreateSessao from "./components/CreateSessao";
-import ConsultarEleitor from "./components/ConsultarEleitor";
-import ListEleitores from "./components/ListEleitores";
-import UpdateStatus from "./components/UpdateStatus";
-import UpdateEleitor from "./components/UpdateEleitor";
+import CreateEleitor from "./pages/Associados/CreateEleitor";
+import CreateUser from "./pages/Users/CreateUser";
+import ConsultarEleitor from "./pages/Associados/ConsultarEleitor";
+import ListEleitores from "./pages/Associados/ListEleitores";
+import UpdateStatus from "./pages/Associados/UpdateStatus";
+import UpdateEleitor from "./pages/Associados/UpdateEleitor";
 import NotFound from "./pages/system/NotFound/NotFound";
 import NotImplemented from "./pages/system/NotImplemented/NotImplemented";
 import Login from "./pages/Auth/Login";
 import ListUsers from "./pages/Users/ListUsers";
-
 
 function AppRoutes() {
     return (
