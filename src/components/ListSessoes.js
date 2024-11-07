@@ -1,5 +1,5 @@
 // src/components/ListSessoes.js
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function ListSessoes() {
   const [sessoes, setSessoes] = useState([]);

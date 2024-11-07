@@ -1,5 +1,5 @@
 // src/components/ListUsers.js
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './ListerUsers.css'; // Importando o CSS
 

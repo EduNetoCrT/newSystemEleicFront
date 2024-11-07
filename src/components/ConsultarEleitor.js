@@ -1,5 +1,5 @@
 // src/components/ConsultarEleitor.js
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './ConsultarEleitor.css'; // Importando o CSS
 
 function ConsultarEleitor() {

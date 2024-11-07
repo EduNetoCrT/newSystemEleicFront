@@ -1,5 +1,5 @@
 // src/components/Sidebar.js
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Sidebar.css';
 import logo from '../assets/logo_2.png'; // Ajuste o caminho conforme necessário
