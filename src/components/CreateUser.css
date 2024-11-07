@@ -1,12 +1,9 @@
-/* src/components/UpdateStatus.css */
-
-.update-status-container {
+.create-user-container {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    padding-top: 50px;
+    height: 100%;
     background-color: white;
     color: red;
     padding: 20px;
@@ -15,10 +12,9 @@
 .form-title {
     margin-bottom: 20px;
     text-align: center;
-    font-size: 18px;
 }
 
-.update-status-form {
+.create-user-form {
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -29,50 +25,36 @@
     width: 300px;
 }
 
-.update-status-form input,
-.update-status-form button,
-.update-status-form select {
+.create-user-form input,
+.create-user-form button {
     margin: 10px 0;
     padding: 10px;
     border: 1px solid red;
     border-radius: 4px;
-    font-size: 14px;
 }
 
-.update-status-form button {
+.create-user-form button {
     background-color: red;
     color: white;
     cursor: pointer;
-    font-size: 14px;
-    padding: 10px;
 }
 
 .back-button {
     margin-top: 10px;
-    background-color: transparent;
-    border: none;
-    color: red;
-    cursor: pointer;
+    padding: 8px 16px;
     font-size: 14px;
+    cursor: pointer;
 }
-
-.error-message {
-    color: red;
-    font-size: 12px;
-    margin-top: 10px;
-    text-align: center;
-}
-
 .modal {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro com opacidade */
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
@@ -80,7 +62,8 @@
     padding: 20px;
     border-radius: 8px;
     text-align: center;
-    width: 300px;
+    width: 100%;
+    max-width: 320px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
@@ -92,4 +75,9 @@
     border-radius: 4px;
     margin-top: 15px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content button:hover {
+    background-color: darkred; /* Cor de fundo ao passar o mouse */
 }

@@ -1,0 +1,58 @@
+/* src/components/ConsultarEleitor.css */
+
+.consultar-eleitor-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 50px;
+  background-color: white;
+  color: red;
+  padding: 20px;
+}
+
+.form-title {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.consultar-eleitor-form,
+.eleitor-info {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 20px;
+  border: 1px solid red;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  width: 300px;
+}
+
+.consultar-eleitor-form input,
+.consultar-eleitor-form button,
+.consultar-eleitor-form select,
+.eleitor-info input,
+.eleitor-info select {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid red;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.consultar-eleitor-form button {
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 10px;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 10px;
+  text-align: center;
+}

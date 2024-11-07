@@ -106,18 +106,23 @@ function CreateEleitor() {
             required
             value={formData.cpf}
           />
-          <input
-            type="text"
-            name="patente"
-            placeholder="Patente"
-            onChange={handleChange}
-            required
-            value={formData.patente}
-          />
+
+          {/* Updated patente select dropdown */}
+          <select name="patente" onChange={handleChange} value={formData.patente} required>
+            <option value="">Patente</option>
+            <option value="2° Tenente">2° Tenente</option>
+            <option value="1° Tenente">1° Tenente</option>
+            <option value="Capitão">Capitão</option>
+            <option value="Major">Major</option>
+            <option value="Tenente Coronel">Tenente Coronel</option>
+            <option value="Coronel">Coronel</option>
+          </select>
+
           <select name="status" onChange={handleChange} value={formData.status}>
             <option value="APTO">APTO</option>
             <option value="INAPTO">INAPTO</option>
           </select>
+          
           <button type="submit">{isEditing ? 'Atualizar Eleitor' : 'Criar Eleitor'}</button>
         </form>
         <button onClick={handleBack} className="back-button">Voltar</button>

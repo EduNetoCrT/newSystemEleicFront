@@ -1,0 +1,58 @@
+.create-eleitor-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: white;
+    color: red;
+    padding: 20px;
+}
+
+.form-title {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.create-eleitor-form {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid red;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 250px; /* Largura reduzida do formulário */
+}
+
+.create-eleitor-form input,
+.create-eleitor-form select,
+.create-eleitor-form button {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid red;
+    border-radius: 4px;
+}
+
+.create-eleitor-form button {
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}
+
+.back-button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.status-confirmado {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .status-nao-confirmado {
+    color: red;
+    font-weight: bold;
+  }
+  

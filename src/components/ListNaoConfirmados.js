@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import './ListEleitores.css';
+import './ListNaoConfirmados.css';
 import { useNavigate } from 'react-router-dom';
 
-function ListEleitores() {
+function ListNaoConfirmados() {
   const [eleitores, setEleitores] = useState([]);
   const navigate = useNavigate();
 
@@ -12,8 +12,10 @@ function ListEleitores() {
         const response = await fetch('http://localhost:3001/eleitores');
         if (response.ok) {
           const data = await response.json();
+          // Filtra apenas os eleitores que ainda não votaram
+          const naoConfirmados = data.filter(eleitor => !eleitor.votou);
           // Ordena os eleitores pelo ID
-          const sortedEleitores = data.sort((a, b) => a.id - b.id);
+          const sortedEleitores = naoConfirmados.sort((a, b) => a.id - b.id);
           setEleitores(sortedEleitores);
         } else {
           console.error('Erro ao buscar eleitores');
@@ -52,9 +54,16 @@ function ListEleitores() {
     navigate('/');
   };
 
+  // Calcula o total de eleitores não confirmados
+  const totalNaoConfirmados = eleitores.length;
+
   return (
     <div className="list-eleitores-container">
-      <h2 className="form-title">Lista de Eleitores</h2>
+      <h2 className="form-title">Presença não Confirmada</h2>
+      
+      {/* Exibe a quantidade total de eleitores não confirmados */}
+      <p>Total de Presenças não confirmadas: {totalNaoConfirmados}</p>
+
       <button onClick={handleBack} className="back-button">Voltar</button>
       <table>
         <thead>
@@ -77,9 +86,7 @@ function ListEleitores() {
               <td>{eleitor.cpf}</td>
               <td>{eleitor.patente}</td>
               <td>{eleitor.status}</td>
-              <td style={{ color: eleitor.votou ? 'green' : 'red' }}>
-                {eleitor.votou ? 'Confirmado' : 'Não Confirmado'}
-              </td>
+              <td className="status-nao-confirmado">Não Confirmado</td>
             </tr>
           ))}
         </tbody>
@@ -88,4 +95,4 @@ function ListEleitores() {
   );
 }
 
-export default ListEleitores;
+export default ListNaoConfirmados;

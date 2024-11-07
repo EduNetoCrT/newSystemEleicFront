@@ -1,3 +1,4 @@
+// src/components/UpdateStatus.js
 import React, { useState } from 'react';
 import './UpdateStatus.css'; // Importando o CSS atualizado
 
@@ -6,6 +7,8 @@ function UpdateStatus() {
   const [eleitor, setEleitor] = useState(null);
   const [status, setStatus] = useState('');
   const [message, setMessage] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -17,11 +20,13 @@ function UpdateStatus() {
         setStatus(data.status); // Preenche o status atual
         setMessage('');
       } else {
-        setMessage('Eleitor não encontrado');
+        setModalMessage('Eleitor não encontrado');
+        setShowModal(true);
         setEleitor(null);
       }
     } catch (error) {
-      setMessage('Erro na requisição');
+      setModalMessage('Erro na requisição');
+      setShowModal(true);
     }
   };
 
@@ -37,13 +42,20 @@ function UpdateStatus() {
       });
 
       if (response.ok) {
-        setMessage('Status atualizado com sucesso!');
+        setModalMessage('Status atualizado com sucesso!');
+        setShowModal(true);
       } else {
-        setMessage('Erro ao atualizar status');
+        setModalMessage('Erro ao atualizar status');
+        setShowModal(true);
       }
     } catch (error) {
-      setMessage('Erro na requisição');
+      setModalMessage('Erro na requisição');
+      setShowModal(true);
     }
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
   };
 
   return (
@@ -78,6 +90,15 @@ function UpdateStatus() {
       )}
 
       {message && <p className="error-message">{message}</p>}
+
+      {showModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <p>{modalMessage}</p>
+            <button onClick={closeModal}>Fechar</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

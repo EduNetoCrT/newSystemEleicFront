@@ -7,21 +7,25 @@ import logo from '../assets/logo_2.png'; // Ajuste o caminho conforme necessári
 function Sidebar() {
   const [expandedSection, setExpandedSection] = useState(null);
 
-  // Função para alternar entre expandido e colapsado
   const toggleSection = (section) => {
     setExpandedSection(expandedSection === section ? null : section);
   };
 
   return (
     <div className="sidebar">
-      <img src={logo} alt="Logo_2" className="logo_2" /> {/* Adicionando a logo */}
+      <img src={logo} alt="Logo_2" className="logo_2" />
       <h3 onClick={() => toggleSection('presencas')}>
         <span className={`expand-icon ${expandedSection === 'presencas' ? '' : 'collapsed'}`}>&#9654;</span>PRESENÇAS
       </h3>
       <ul style={{ display: expandedSection === 'presencas' ? 'block' : 'none' }}>
         <li><Link to="/create-presenca">REGISTRAR PRESENÇA</Link></li>
-        <li><Link to="/consultar-presencas">CONSULTAR PRESENÇAS</Link></li>
+        <li><Link to="/list-presencas">CONFIRMADAS</Link></li>
+        <li><Link to="/list-nao-confirmados">NÃO CONFIRMADAS</Link></li>
         <li><Link to="/consultar-presenca-eleitor">CONSULTAR PRESENÇA DO ELEITOR</Link></li>
+        
+
+
+        
       </ul>
 
       <h3 onClick={() => toggleSection('associados')}>
@@ -39,7 +43,6 @@ function Sidebar() {
       </h3>
       <ul style={{ display: expandedSection === 'secoes' ? 'block' : 'none' }}>
         <li><Link to="/create-sessao">NOVA SEÇÃO</Link></li>
-        <li><Link to="/consultar-sessoes">CONSULTAR SEÇÃO</Link></li>
         <li><Link to="/list-sessoes">LISTAR SEÇÕES</Link></li>
       </ul>
 
@@ -47,7 +50,7 @@ function Sidebar() {
         <span className={`expand-icon ${expandedSection === 'usuarios' ? '' : 'collapsed'}`}>&#9654;</span>USUÁRIOS
       </h3>
       <ul style={{ display: expandedSection === 'usuarios' ? 'block' : 'none' }}>
-        <li><Link to="/create-usuario">NOVO USUÁRIO</Link></li>
+        <li><Link to="/create-user">NOVO USUÁRIO</Link></li>
         <li><Link to="/edit-usuario">EDITAR USUÁRIO</Link></li>
         <li><Link to="/list-usuarios">LISTAR USUÁRIOS</Link></li>
       </ul>

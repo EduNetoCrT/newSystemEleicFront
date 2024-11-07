@@ -6,9 +6,7 @@ import Sidebar from './Sidebar';
 function Dashboard() {
   return (
     <div className="dashboard">
-      <Header />
       <div className="dashboard-content">
-        <Sidebar />
         <div className="main-area">
           <h2>BEM VINDO AO CONTROLE DE PRESENÇA 
             CAIXA BENEFICENTE PM/BM
