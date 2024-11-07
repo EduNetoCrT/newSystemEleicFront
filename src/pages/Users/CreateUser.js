@@ -1,23 +1,22 @@
 // src/components/CreateUser.js
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import './CreateUser.css'; // Importando o CSS
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { createUser } from "../../services/userService"; // Importa o serviço
+import "./CreateUser.css";
 
 function CreateUser() {
   const [formData, setFormData] = useState({
-    email: '',
-    name: '',
-    password: '',
-    secao: '', // Novo campo 'secao'
+    email: "",
+    name: "",
+    password: "",
+    secao: "",
   });
 
-  const [showSuccessModal, setShowSuccessModal] = useState(false); // Modal de sucesso
-  const [showErrorModal, setShowErrorModal] = useState(false); // Modal de erro
-  const [modalMessage, setModalMessage] = useState('');
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
   const navigate = useNavigate();
 
-  // Função para lidar com a mudança de valores dos campos do formulário
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -26,29 +25,24 @@ function CreateUser() {
     });
   };
 
-  // Função para enviar os dados (criando um novo usuário)
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3001/users', formData);
-      setModalMessage(response.data.message || 'Usuário criado com sucesso!');
-      setShowSuccessModal(true); // Exibe o modal de sucesso
+      const response = await createUser(formData); // Usa o serviço para criar o usuário
+      setModalMessage(response.message || "Usuário criado com sucesso!");
+      setShowSuccessModal(true);
 
       // Limpa o formulário após o sucesso
       setFormData({
-        email: '',
-        name: '',
-        password: '',
-        secao: '', // Limpa o novo campo
+        email: "",
+        name: "",
+        password: "",
+        secao: "",
       });
-    } catch (error) {
-      if (error.response?.status === 409) { // E-mail já cadastrado
-        setModalMessage('E-mail já cadastrado. Tente outro.');
-        setShowErrorModal(true); // Exibe o modal de erro
-      } else {
-        alert('Erro ao enviar o formulário: ' + (error.response?.data?.message || error.message));
-      }
+    } catch (errorMessage) {
+      setModalMessage(errorMessage);
+      setShowErrorModal(true);
     }
   };
 
@@ -98,11 +92,13 @@ function CreateUser() {
           placeholder="Seção"
           onChange={handleChange}
           required
-          value={formData.secao} // Controle o valor
+          value={formData.secao}
         />
         <button type="submit">Criar Usuário</button>
       </form>
-      <button onClick={handleBack} className="back-button">Voltar</button>
+      <button onClick={handleBack} className="back-button">
+        Voltar
+      </button>
 
       {/* Modal de sucesso */}
       {showSuccessModal && (
@@ -114,7 +110,7 @@ function CreateUser() {
         </div>
       )}
 
-      {/* Modal de erro (e-mail já cadastrado) */}
+      {/* Modal de erro */}
       {showErrorModal && (
         <div className="modal">
           <div className="modal-content">

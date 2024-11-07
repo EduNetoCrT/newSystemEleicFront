@@ -4,7 +4,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import SidebarLayout from "./components/layouts/SidebarLayout";
 import Dashboard from "./components/Dashboard";
 import CreateEleitor from "./components/CreateEleitor";
-import CreateUser from "./components/CreateUser";
+import CreateUser from "./pages/Users/CreateUser";
 import CreatePresenca from "./components/CreatePresenca";
 import CreateSessao from "./components/CreateSessao";
 import ConsultarEleitor from "./components/ConsultarEleitor";
