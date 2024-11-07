@@ -1,21 +1,23 @@
 // src/components/ListUsers.js
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import './ListerUsers.css'; // Importando o CSS
+import { useEffect, useState } from "react";
+import "./ListUsers.css";
+import { getUsers, deleteUser } from "../../services/userService"; // Importa o serviço
 
 function ListUsers() {
   const [users, setUsers] = useState([]);
   const [showModal, setShowModal] = useState(false);
-  const [modalMessage, setModalMessage] = useState('');
-  const [userToDelete, setUserToDelete] = useState(null); // ID do usuário a ser excluído
+  const [modalMessage, setModalMessage] = useState("");
+  const [userToDelete, setUserToDelete] = useState(null);
 
   // Função para buscar todos os usuários
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/users');
-      setUsers(response.data);
+      const data = await getUsers();
+      setUsers(data);
     } catch (error) {
-      console.error('Erro ao buscar usuários:', error);
+      console.error("Erro ao buscar usuários:", error);
+      setModalMessage(error); // Exibe a mensagem de erro no modal
+      setShowModal(true); // Mostra o modal com o erro
     }
   };
 
@@ -26,25 +28,25 @@ function ListUsers() {
   // Função para abrir o modal de confirmação de exclusão
   const handleDeleteClick = (userId) => {
     setUserToDelete(userId);
-    setModalMessage('Tem certeza que deseja excluir este usuário?');
+    setModalMessage("Tem certeza que deseja excluir este usuário?");
     setShowModal(true);
   };
 
   // Função para excluir usuário
   const handleDeleteUser = async () => {
     try {
-      await axios.delete(`http://localhost:3001/users/${userToDelete}`);
-      setModalMessage('Usuário excluído com sucesso!');
+      const message = await deleteUser(userToDelete);
+      setModalMessage(message); // Exibe a mensagem de sucesso no modal
       fetchUsers(); // Atualiza a lista de usuários
     } catch (error) {
-      setModalMessage('Erro ao excluir usuário: ' + (error.response?.data?.message || error.message));
+      setModalMessage(error); // Exibe a mensagem de erro no modal
     }
     setUserToDelete(null); // Limpa o usuário a ser excluído
   };
 
   const closeModal = () => {
     setShowModal(false);
-    setUserToDelete(null); // Limpa o usuário a ser excluído ao fechar o modal
+    setUserToDelete(null);
   };
 
   return (
@@ -59,7 +61,7 @@ function ListUsers() {
               <th>ID</th>
               <th>Email</th>
               <th>Nome</th>
-              <th>Seção</th> {/* Nova coluna para Seção */}
+              <th>Seção</th>
               <th>Ações</th>
             </tr>
           </thead>
@@ -69,9 +71,11 @@ function ListUsers() {
                 <td>{user.id}</td>
                 <td>{user.email}</td>
                 <td className="user-name">{user.name}</td>
-                <td>{user.secao}</td> {/* Exibindo a seção */}
+                <td>{user.secao}</td>
                 <td>
-                  <button onClick={() => handleDeleteClick(user.id)}>Excluir</button>
+                  <button onClick={() => handleDeleteClick(user.id)}>
+                    Excluir
+                  </button>
                 </td>
               </tr>
             ))}
@@ -84,7 +88,9 @@ function ListUsers() {
         <div className="modal">
           <div className="modal-content">
             <p>{modalMessage}</p>
-            <button onClick={handleDeleteUser}>Confirmar</button>
+            {userToDelete && (
+              <button onClick={handleDeleteUser}>Confirmar</button>
+            )}
             <button onClick={closeModal}>Cancelar</button>
           </div>
         </div>

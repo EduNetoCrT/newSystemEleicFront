@@ -9,12 +9,12 @@ import CreatePresenca from "./components/CreatePresenca";
 import CreateSessao from "./components/CreateSessao";
 import ConsultarEleitor from "./components/ConsultarEleitor";
 import ListEleitores from "./components/ListEleitores";
-import ListUsers from "./components/ListerUsers";
 import UpdateStatus from "./components/UpdateStatus";
 import UpdateEleitor from "./components/UpdateEleitor";
 import NotFound from "./pages/system/NotFound/NotFound";
 import NotImplemented from "./pages/system/NotImplemented/NotImplemented";
 import Login from "./pages/Auth/Login";
+import ListUsers from "./pages/Users/ListUsers";
 
 
 function AppRoutes() {
