@@ -1,12 +1,11 @@
-
 .header {
-  background-color: red; /* Mudando para vermelho */
-  color: white; /* Texto branco */
-  padding: 20px;
+  background-color: #d32f2f; /* Vermelho mais elegante */
+  color: white;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  justify-content: space-between; /* Espaço entre logo e informações do usuário */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .logo {
@@ -14,3 +13,28 @@
   font-weight: bold;
 }
 
+.user-info {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+
+.user-info span {
+  margin-right: 10px; /* Espaçamento entre nome do usuário e sessão */
+}
+
+.logout-button {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.logout-button:hover {
+  background-color: white;
+  color: #d32f2f;
+}
