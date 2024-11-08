@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './ListPresencas.css';
 
+const BASE_URL_API = process.env.REACT_APP_BASE_URL_API || "http://localhost:3001";
+
 function ListPresencas() {
     const [presencas, setPresencas] = useState([]);
     const [error, setError] = useState(null);
@@ -11,7 +13,7 @@ function ListPresencas() {
     useEffect(() => {
         const fetchPresencas = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/presencas');
+                const response = await axios.get(`${BASE_URL_API}/presencas`);
                 setPresencas(response.data);
             } catch (error) {
                 setError('Erro ao carregar presenças');

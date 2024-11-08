@@ -1,7 +1,8 @@
 // src/services/associadoService.js
 import axios from "axios";
 
-const API_URL = "http://localhost:3001/eleitores";
+const BASE_URL_API = process.env.REACT_APP_BASE_URL_API || "http://localhost:3001";
+const API_URL = `${BASE_URL_API}/eleitores`;
 
 export const getAssociadoByMatricula = async (matricula) => {
   try {
