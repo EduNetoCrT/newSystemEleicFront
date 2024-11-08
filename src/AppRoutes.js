@@ -15,6 +15,8 @@ import NotFound from "./pages/system/NotFound/NotFound";
 import NotImplemented from "./pages/system/NotImplemented/NotImplemented";
 import Login from "./pages/Auth/Login";
 import ListUsers from "./pages/Users/ListUsers";
+import ListNaoConfirmados from "./components/ListNaoConfirmados";
+import ListPresencas from "./components/ListPresencas";
 
 function AppRoutes() {
     return (
@@ -117,6 +119,26 @@ function AppRoutes() {
               <ProtectedRoute>
                 <SidebarLayout>
                   <ConsultarEleitor />
+                </SidebarLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/list-presencas"
+            element={
+              <ProtectedRoute>
+                <SidebarLayout>
+                  <ListPresencas />
+                </SidebarLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/list-nao-confirmados"
+            element={
+              <ProtectedRoute>
+                <SidebarLayout>
+                  <ListNaoConfirmados />
                 </SidebarLayout>
               </ProtectedRoute>
             }
