@@ -5,7 +5,7 @@ import {jwtDecode} from 'jwt-decode'; // Importando jwt-decode para decodificar 
 import './CreatePresenca.css';
 
 
-const BASE_URL_API = process.env.REACT_APP_BASE_URL_API || "http://localhost:3001";
+const BASE_URL_API = "http://ec2-54-163-88-195.compute-1.amazonaws.com:3001";
 
 function CreatePresenca() {
   const [matricula, setMatricula] = useState('');
