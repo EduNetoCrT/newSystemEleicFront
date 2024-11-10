@@ -90,19 +90,14 @@
   padding: 20px;
   border-radius: 8px;
   text-align: center;
-  width: 300px; /* Alinha a largura com o modal de UpdateStatus */
+  width: 300px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  color: black; /* Define o texto em preto */
 }
 
-.modal-content button {
-  background-color: red;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  margin-top: 15px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+
+.modal-content .observacao-button {
+  margin-right: 10px; /* Ajuste este valor para mais ou menos espaço */
 }
 
 .modal-content button:hover {

@@ -1,11 +1,7 @@
-// src/components/CreatePresenca.js
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {jwtDecode} from 'jwt-decode'; // Importando jwt-decode para decodificar o token
+import { jwtDecode } from 'jwt-decode'; // Importando jwt-decode para decodificar o token
 import './CreatePresenca.css';
-
-
-const BASE_URL_API = "http://localhost:3001";
 
 function CreatePresenca() {
   const [matricula, setMatricula] = useState('');
@@ -14,6 +10,7 @@ function CreatePresenca() {
   const [message, setMessage] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
+  const [observacao, setObservacao] = useState(''); // Estado para armazenar a observação do eleitor
 
   useEffect(() => {
     // Decodifica o token JWT para obter a sessão do usuário
@@ -27,13 +24,14 @@ function CreatePresenca() {
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${BASE_URL_API}/eleitores/${matricula}`);
+      const response = await fetch(`http://localhost:3001/eleitores/${matricula}`);
       if (response.ok) {
         const data = await response.json();
         setEleitor(data);
         setMessage('');
 
         if (data.status === 'INAPTO') {
+          setObservacao(data.observacao || 'Nenhuma observação registrada.'); // Exibe a observação se houver
           setModalMessage('O associado está inapto ao voto. Favor procurar a gerência para sanar pendências.');
           setShowModal(true);
         } else if (data.votou) {
@@ -57,7 +55,7 @@ function CreatePresenca() {
     }
 
     try {
-      const response = await axios.post(`${BASE_URL_API}/presencas`, {
+      const response = await axios.post('http://localhost:3001/presencas', {
         local,
         eleitorMatricula: eleitor.matricula,
       });
@@ -74,6 +72,10 @@ function CreatePresenca() {
 
   const closeModal = () => {
     setShowModal(false);
+  };
+
+  const handleObservacaoClick = () => {
+    setModalMessage(observacao); // Atualiza a mensagem do modal para a observação
   };
 
   return (
@@ -114,7 +116,11 @@ function CreatePresenca() {
         <div className="modal">
           <div className="modal-content">
             <p>{modalMessage}</p>
-            <button onClick={closeModal}>Fechar</button>
+            {eleitor && eleitor.status === 'INAPTO' && (
+  <button onClick={handleObservacaoClick} className="observacao-button">Observação</button> 
+)}
+<button onClick={closeModal}>Fechar</button>
+
           </div>
         </div>
       )}
