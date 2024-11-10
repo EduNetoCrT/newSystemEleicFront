@@ -1,4 +1,3 @@
-// src/components/CreateEleitor.js
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -15,6 +14,7 @@ function CreateEleitor() {
     cpf: "",
     patente: "",
     status: "APTO",
+    observacao: "",
   });
 
   const [isEditing, setIsEditing] = useState(false);
@@ -61,6 +61,7 @@ function CreateEleitor() {
         cpf: "",
         patente: "",
         status: "APTO",
+        observacao: "",
       });
       setIsEditing(false);
     } catch (error) {
@@ -76,7 +77,7 @@ function CreateEleitor() {
     <div>
       <div className="create-eleitor-container">
         <h2 className="form-title">
-          {isEditing ? "Atualizar Eleitor" : "Cadastrar Eleitor"}
+          {isEditing ? "Atualizar Eleitor" : "Cadastrar Associado"}
         </h2>
         <form className="create-eleitor-form" onSubmit={handleSubmit}>
           <input
@@ -124,8 +125,18 @@ function CreateEleitor() {
             <option value="INAPTO">INAPTO</option>
           </select>
 
+          {formData.status === "INAPTO" && (
+            <textarea
+              name="observacao"
+              placeholder="Observação"
+              onChange={handleChange}
+              value={formData.observacao}
+              required
+            ></textarea>
+          )}
+
           <button type="submit">
-            {isEditing ? "Atualizar Eleitor" : "Criar Eleitor"}
+            {isEditing ? "Atualizar Eleitor" : "Criar Associado"}
           </button>
         </form>
         <button onClick={handleBack} className="back-button">

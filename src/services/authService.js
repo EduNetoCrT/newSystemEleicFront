@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL_API = "http://ec2-54-163-88-195.compute-1.amazonaws.com:3001";
+const BASE_URL_API = "http://localhost:3001";
 
 export const loginService = async (email, password) => {
   try {

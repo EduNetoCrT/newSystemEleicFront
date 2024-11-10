@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './ListPresencas.css';
 
-const BASE_URL_API = "http://ec2-54-163-88-195.compute-1.amazonaws.com:3001";
+const BASE_URL_API = "http://localhost:3001";
 
 function ListPresencas() {
     const [presencas, setPresencas] = useState([]);
@@ -39,7 +39,7 @@ function ListPresencas() {
                 <thead>
                     <tr>
                         <th>Horário</th>
-                        <th>Eleitor</th>
+                        <th>Associado</th>
                         <th>Matricula</th>
                         <th>Sessão</th>
                         <th>Status</th>

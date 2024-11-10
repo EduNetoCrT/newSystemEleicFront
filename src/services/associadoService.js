@@ -2,7 +2,6 @@
 import axios from "axios";
 
 const BASE_URL_API = "http://ec2-54-163-88-195.compute-1.amazonaws.com:3001";
-
 const API_URL = `${BASE_URL_API}/eleitores`;
 
 export const getAssociadoByMatricula = async (matricula) => {
@@ -55,11 +54,13 @@ export const deleteAssociado = async (matricula) => {
   }
 };
 
-export const updateAssociadoStatus = async (matricula, status) => {
+// Atualização com observação para a mudança de status do associado
+export const updateAssociadoStatus = async (matricula, status, observacao = "") => {
   try {
     const response = await axios.put(`${API_URL}/status`, {
       matricula,
       status,
+      observacao,
     });
     return response.data;
   } catch (error) {
