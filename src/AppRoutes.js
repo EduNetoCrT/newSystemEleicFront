@@ -17,6 +17,7 @@ import Login from "./pages/Auth/Login";
 import ListUsers from "./pages/Users/ListUsers";
 import ListNaoConfirmados from "./components/ListNaoConfirmados";
 import ListPresencas from "./components/ListPresencas";
+import PresencaCountBySessao from "./components/PresencaCountBySessao";
 
 function AppRoutes() {
     return (
@@ -143,6 +144,19 @@ function AppRoutes() {
               </ProtectedRoute>
             }
           />
+
+          <Route
+          path="/presenca-count"
+          element={
+            <ProtectedRoute>
+              <SidebarLayout>
+                <PresencaCountBySessao />
+              </SidebarLayout>
+            </ProtectedRoute>
+          }
+          />
+
+
   
           {/* Rota para a página de Not Implemented */}
           <Route path="/not-implemented" element={<NotImplemented />} />

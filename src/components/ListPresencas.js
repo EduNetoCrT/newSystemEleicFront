@@ -1,9 +1,10 @@
+// src/pages/ListPresencas.js
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './ListPresencas.css';
 
-const BASE_URL_API = "http://localhost:3001";
+const BASE_URL_API = "http://179.154.75.165:3001";
 
 function ListPresencas() {
     const [presencas, setPresencas] = useState([]);
@@ -31,7 +32,11 @@ function ListPresencas() {
             <h2>Presenças Confirmadas</h2>
             {error && <p className="error">{error}</p>}
 
-            <p>Total de presenças confirmadas: {totalConfirmadas}</p>
+            {/* Card com a quantidade total de presenças confirmadas */}
+            <div className="total-presencas-card">
+                <h3>Total de Presenças Confirmadas</h3>
+                <p>{totalConfirmadas}</p>
+            </div>
 
             <Link to="/dashboard" className="back-button">Voltar</Link>
 

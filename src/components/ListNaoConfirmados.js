@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+// src/pages/ListNaoConfirmados.js
+import React, { useEffect, useState } from 'react';
 import './ListNaoConfirmados.css';
 import { useNavigate } from 'react-router-dom';
-
-const BASE_URL_API = "http://localhost:3001";
 
 function ListNaoConfirmados() {
   const [eleitores, setEleitores] = useState([]);
@@ -11,7 +10,7 @@ function ListNaoConfirmados() {
   useEffect(() => {
     const fetchEleitores = async () => {
       try {
-        const response = await fetch(`${BASE_URL_API}/eleitore`);
+        const response = await fetch('http://179.154.75.165:3001/eleitores');
         if (response.ok) {
           const data = await response.json();
           // Filtra apenas os eleitores que ainda não votaram
@@ -36,7 +35,7 @@ function ListNaoConfirmados() {
     if (!confirmDelete) return;
 
     try {
-      const response = await fetch(`${BASE_URL_API}/eleitores/${matricula}`, {
+      const response = await fetch(`http://179.154.75.165:3001/eleitores/${matricula}`, {
         method: 'DELETE',
       });
 
@@ -61,10 +60,14 @@ function ListNaoConfirmados() {
 
   return (
     <div className="list-eleitores-container">
-      <h2 className="form-title">Presença não Confirmada</h2>
+      <h2>Presença não Confirmada</h2>
       
-      {/* Exibe a quantidade total de eleitores não confirmados */}
-      <p>Total de Presenças não confirmadas: {totalNaoConfirmados}</p>
+      {/* Card com a quantidade total de eleitores não confirmados */}
+      <div className="total-nao-confirmados-card">
+        <h3>Total de Presenças <br></br>
+           não Confirmadas</h3>
+        <p>{totalNaoConfirmados}</p>
+      </div>
 
       <button onClick={handleBack} className="back-button">Voltar</button>
       <table>

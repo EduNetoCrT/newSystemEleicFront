@@ -51,7 +51,7 @@ function ListEleitores() {
 
   return (
     <div className="list-eleitores-container">
-      <h2 className="form-title">Lista de Eleitores</h2>
+      <h2>Lista de Eleitores</h2>
       <button onClick={handleBack} className="back-button">
         Voltar
       </button>

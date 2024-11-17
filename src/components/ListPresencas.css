@@ -10,34 +10,38 @@
 }
 
 .form-title {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     text-align: center;
+    font-size: 18px;
 }
 
 .create-eleitor-form {
     display: flex;
     flex-direction: column;
     background-color: white;
-    padding: 20px;
+    padding: 15px;
     border: 1px solid red;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    width: 250px; /* Largura reduzida do formulário */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 220px;
+    margin: 10px;
 }
 
 .create-eleitor-form input,
 .create-eleitor-form select,
 .create-eleitor-form button {
-    margin: 10px 0;
-    padding: 10px;
+    margin: 8px 0;
+    padding: 8px;
     border: 1px solid red;
     border-radius: 4px;
+    font-size: 14px;
 }
 
 .create-eleitor-form button {
     background-color: red;
     color: white;
     cursor: pointer;
+    font-size: 14px;
 }
 
 .back-button {
@@ -46,13 +50,67 @@
     font-size: 14px;
     cursor: pointer;
 }
+
+/* Centralizar o card de presenças confirmadas */
+.total-presencas-card {
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 15px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 220px;  /* Mesma largura que o formulário */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.total-presencas-card h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.total-presencas-card p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Outros estilos para a tabela e botões */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
 .status-confirmado {
     color: green;
-    font-weight: bold;
-  }
-  
-  .status-nao-confirmado {
+}
+
+.status-nao-confirmado {
+    color: red;
+}
+
+.error {
     color: red;
     font-weight: bold;
-  }
-  
+}
+
+.back-button {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+}

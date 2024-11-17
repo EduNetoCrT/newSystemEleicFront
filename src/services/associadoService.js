@@ -1,7 +1,7 @@
 // src/services/associadoService.js
 import axios from "axios";
 
-const BASE_URL_API = "http://ec2-54-163-88-195.compute-1.amazonaws.com:3001";
+const BASE_URL_API = "http://179.154.75.165:3001";
 const API_URL = `${BASE_URL_API}/eleitores`;
 
 export const getAssociadoByMatricula = async (matricula) => {

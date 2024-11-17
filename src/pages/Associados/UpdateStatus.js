@@ -9,6 +9,7 @@ function UpdateStatus() {
   const [matricula, setMatricula] = useState("");
   const [eleitor, setEleitor] = useState(null);
   const [status, setStatus] = useState("");
+  const [observacao, setObservacao] = useState("");  // Novo estado para observação
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
 
@@ -28,7 +29,13 @@ function UpdateStatus() {
   const handleUpdateStatus = async (e) => {
     e.preventDefault();
     try {
-      await updateAssociadoStatus(matricula, status);
+      if (status === "INAPTO" && !observacao) {
+        setModalMessage("É necessário preencher a observação para status INAPTO.");
+        setShowModal(true);
+        return; // Não atualiza se a observação não for preenchida
+      }
+
+      await updateAssociadoStatus(matricula, status, observacao);
       setModalMessage("Status atualizado com sucesso!");
       setShowModal(true);
     } catch (error) {
@@ -71,6 +78,19 @@ function UpdateStatus() {
             <option value="APTO">APTO</option>
             <option value="INAPTO">INAPTO</option>
           </select>
+
+          {/* Renderiza o campo de observação apenas se o status for INAPTO */}
+          {status === "INAPTO" && (
+            <div className="observacao-container">
+              <label htmlFor="observacao">Observação:</label>
+              <textarea
+                id="observacao"
+                value={observacao}
+                onChange={(e) => setObservacao(e.target.value)}
+                required
+              />
+            </div>
+          )}
 
           <button type="submit">Atualizar Status</button>
         </form>

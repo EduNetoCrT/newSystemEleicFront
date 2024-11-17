@@ -21,7 +21,7 @@ function Sidebar() {
         <li><Link to="/create-presenca">REGISTRAR PRESENÇA</Link></li>
         <li><Link to="/list-presencas">CONFIRMADAS</Link></li>
         <li><Link to="/list-nao-confirmados">NÃO CONFIRMADAS</Link></li>
-        <li><Link to="/consultar-presenca-eleitor">CONSULTAR PRESENÇA DO ELEITOR</Link></li>
+        <li><Link to="/presenca-count">TOTAL DE PRESENÇAS</Link></li>
         
 
 

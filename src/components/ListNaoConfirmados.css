@@ -50,5 +50,31 @@
     color: red;
     font-weight: bold;
   }
+  /* Estilos para o card de presença não confirmada */
+.total-nao-confirmados-card {
+  background-color: #f8f9fa;  /* Cor de fundo clara */
+  border: 1px solid #ccc;  /* Borda cinza suave */
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px; /* Espaço entre o card e o resto da página */
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.total-nao-confirmados-card h3 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.total-nao-confirmados-card p {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;  /* Cor do texto */
+}
+
+.table {
+  margin-top: 20px;
+}
+
   
   

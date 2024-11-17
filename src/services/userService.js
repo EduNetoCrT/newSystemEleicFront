@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL_API = "http://localhost:3001";
+const BASE_URL_API = "http://179.154.75.165:3001";
 const API_URL = `${BASE_URL_API}/users`;
 
 export const getUsers = async () => {

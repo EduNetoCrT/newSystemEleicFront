@@ -1,50 +1,48 @@
 .create-eleitor-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%; /* Ocupa a altura total do contêiner pai */
-    background-color: white; /* Fundo branco */
-    color: red; /* Texto vermelho */
-    padding: 20px;
-  }
-  
-  .form-title {
-    margin-bottom: 20px; /* Espaço abaixo do título */
-    text-align: center; /* Centraliza o texto */
-  }
-  
-  .create-eleitor-form {
-    display: flex;
-    flex-direction: column;
-    background-color: white; /* Fundo branco do formulário */
-    padding: 20px;
-    border: 1px solid red; /* Borda vermelha */
-    border-radius: 8px; /* Bordas arredondadas */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    width: 300px; /* Largura do formulário */
-  }
-  
-  .create-eleitor-form input,
-  .create-eleitor-form select,
-  .create-eleitor-form button {
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid red; /* Borda vermelha */
-    border-radius: 4px; /* Bordas arredondadas */
-  }
-  
-  .create-eleitor-form button {
-    background-color: red; /* Fundo vermelho do botão */
-    color: white; /* Texto do botão branco */
-    cursor: pointer;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Ocupa a altura total do contêiner pai */
+  background-color: white; /* Fundo branco */
+  color: red; /* Texto vermelho */
+  padding: 20px;
+}
 
-  .back-button {
-    margin-top: 10px;
-    padding: 8px 16px;
-    font-size: 14px;
-    cursor: pointer;
-  }
-  
-  
+.form-title {
+  margin-bottom: 20px; /* Espaço abaixo do título */
+  text-align: center; /* Centraliza o texto */
+}
+
+.create-eleitor-form {
+  display: flex;
+  flex-direction: column;
+  background-color: white; /* Fundo branco do formulário */
+  padding: 20px;
+  border: 1px solid red; /* Borda vermelha */
+  border-radius: 8px; /* Bordas arredondadas */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  width: 350px; /* Aumentei a largura do formulário */
+}
+
+.create-eleitor-form input,
+.create-eleitor-form select,
+.create-eleitor-form button {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid red; /* Borda vermelha */
+  border-radius: 4px; /* Bordas arredondadas */
+}
+
+.create-eleitor-form button {
+  background-color: red; /* Fundo vermelho do botão */
+  color: white; /* Texto do botão branco */
+  cursor: pointer;
+}
+
+.back-button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
