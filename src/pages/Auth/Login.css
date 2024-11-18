@@ -1,65 +1,131 @@
 /* src/components/Login.css */
 .login-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch; /* Garante que as seções se estiquem igualmente */
   min-height: 100vh;
-  background-image: url('../../assets/logo_2.png'); /* Substitua pelo caminho da sua imagem */
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  padding: 20px; /* Adicionado para evitar que o conteúdo grude nas bordas */
+  background-color: #f7f9fc; /* Fundo claro */
 }
 
-.login-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(255, 0, 0, 0.5); /* Vermelho fumaça */
+.info-section {
+  flex: 2; /* Ocupa uma área maior em comparação ao formulário */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: #ffe5e5; /* Vermelho claro */
+  padding: 20px;
+  overflow: hidden;
+}
+
+.info-section .background-image {
+  width: 67%;
+  height: 40%;
+  background-image: url('../../assets/background.png'); /* Substitua pelo caminho correto */
+  background-repeat: no-repeat;
+  background-size: contain; /* Ajusta o tamanho da imagem */
+  background-position: center;
   z-index: 1;
+  filter: brightness(0.8); /* Reduz o brilho para melhorar contraste */
+}
+
+.info-section .info-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #e53e3e; /* Vermelho vibrante */
+}
+
+.info-section h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.info-section p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #1a202c; /* Texto escuro */
+}
+
+.form-section {
+  flex: 1; /* Ocupa uma área menor em relação à info-section */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
 }
 
 .login-form {
-  position: relative;
-  z-index: 2;
   display: flex;
   flex-direction: column;
   background-color: white;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
-  margin: auto; /* Centraliza horizontalmente */
+  text-align: center;
+}
+
+.logo-container {
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
 }
 
 .form-title {
   margin-bottom: 20px;
-  text-align: center;
-  font-size: 24px;
-  color: #333;
+  font-size: 26px;
+  color: #1a202c; /* Texto escuro */
+  font-weight: bold;
 }
 
-.login-form input,
-.login-form button,
-.login-form select {
+.login-form input {
   margin: 10px 0;
-  padding: 10px;
-  border: 1px solid red;
-  border-radius: 4px;
-  font-size: 14px;
+  padding: 12px;
+  border: 1px solid #e53e3e; /* Vermelho */
+  border-radius: 6px;
+  font-size: 16px;
+  color: #2d3748; /* Texto escuro */
+  background-color: #edf2f7; /* Fundo claro */
+}
+
+.login-form input:focus {
+  border-color: #e53e3e; /* Vermelho ao focar */
+  outline: none;
 }
 
 .login-form button {
-  background-color: red;
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #e53e3e; /* Vermelho vibrante */
   color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .login-form button:hover {
-  background-color: darkred;
+  background-color: #c53030; /* Vermelho escuro no hover */
+}
+
+.login-form a {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #e53e3e; /* Vermelho */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.login-form a:hover {
+  color: #c53030; /* Vermelho mais escuro no hover */
 }
