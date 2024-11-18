@@ -1,59 +1,67 @@
 .list-eleitores-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    background-color: white;
-    color: black;
-    padding: 20px;
-  }
-  
-  .form-title {
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  th, td {
-    border: 1px solid red;
-    padding: 10px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-  }
-  
-  button {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-  
-  button:hover {
-    background-color: darkred;
-  }
-  .back-button {
-    margin: 10px 0;
-    background-color: transparent;
-    border: 1px solid red;
-    color: red;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-  
-  .back-button:hover {
-    background-color: red;
-    color: white;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* Garante que os itens fiquem no topo */
+  align-items: center;
+  height: 100vh;
+  /* Faz o contêiner ocupar a altura total da tela */
+  margin: 0;
+  /* Remove qualquer margem extra */
+  padding: 0;
+  /* Remove qualquer padding extra */
+  height: 100%;
+  background-color: white;
+  color: black;
+  padding: 20px;
+}
+
+.form-title {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th,
+td {
+  border: 1px solid red;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: darkred;
+}
+
+.back-button {
+  margin: 10px 0;
+  background-color: transparent;
+  border: 1px solid red;
+  color: red;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.back-button:hover {
+  background-color: red;
+  color: white;
+}

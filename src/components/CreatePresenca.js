@@ -24,7 +24,7 @@ function CreatePresenca() {
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://179.154.75.165:3001/eleitores/${matricula}`);
+      const response = await fetch(`http://187.64.75.162:3001/eleitores/${matricula}`);
       if (response.ok) {
         const data = await response.json();
         setEleitor(data);
@@ -55,7 +55,7 @@ function CreatePresenca() {
     }
 
     try {
-      const response = await axios.post('http://179.154.75.165:3001/presencas', {
+      const response = await axios.post('http://187.64.75.162:3001/presencas', {
         local,
         eleitorMatricula: eleitor.matricula,
       });

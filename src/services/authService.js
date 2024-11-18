@@ -1,10 +1,8 @@
-import axios from "axios";
-
-const BASE_URL_API = "http://179.154.75.165:3001";
+import api from "./api";
 
 export const loginService = async (email, password) => {
   try {
-    const response = await axios.post(`${BASE_URL_API}/login`, { email, password });
+    const response = await api.post("login", { email, password });
     return response.data;
   } catch (error) {
     throw error.response?.data?.message || "Erro desconhecido";

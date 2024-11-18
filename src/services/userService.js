@@ -1,11 +1,10 @@
-import axios from 'axios';
+import api from "./api";
 
-const BASE_URL_API = "http://179.154.75.165:3001";
-const API_URL = `${BASE_URL_API}/users`;
+const RESOURCE = "users";
 
 export const getUsers = async () => {
   try {
-    const response = await axios.get(API_URL);
+    const response = await api.get(RESOURCE);
     return response.data;
   } catch (error) {
     throw error.response?.data?.message || 'Erro ao buscar usuários';
@@ -14,7 +13,7 @@ export const getUsers = async () => {
 
 export const deleteUser = async (userId) => {
   try {
-    await axios.delete(`${API_URL}/${userId}`);
+    await api.delete(`${RESOURCE}/${userId}`);
     return 'Usuário excluído com sucesso!';
   } catch (error) {
     throw error.response?.data?.message || 'Erro ao excluir usuário';
@@ -23,7 +22,7 @@ export const deleteUser = async (userId) => {
 
 export const createUser = async (userData) => {
   try {
-    const response = await axios.post(API_URL, userData);
+    const response = await api.post(RESOURCE, userData);
     return response.data;
   } catch (error) {
     throw error.response?.data?.message || 'Erro ao criar usuário';

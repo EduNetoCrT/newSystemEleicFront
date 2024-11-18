@@ -10,7 +10,7 @@ function ListNaoConfirmados() {
   useEffect(() => {
     const fetchEleitores = async () => {
       try {
-        const response = await fetch('http://179.154.75.165:3001/eleitores');
+        const response = await fetch('http://187.64.75.162:3001/eleitores');
         if (response.ok) {
           const data = await response.json();
           // Filtra apenas os eleitores que ainda não votaram
@@ -35,7 +35,7 @@ function ListNaoConfirmados() {
     if (!confirmDelete) return;
 
     try {
-      const response = await fetch(`http://179.154.75.165:3001/eleitores/${matricula}`, {
+      const response = await fetch(`http://187.64.75.162:3001/eleitores/${matricula}`, {
         method: 'DELETE',
       });
 

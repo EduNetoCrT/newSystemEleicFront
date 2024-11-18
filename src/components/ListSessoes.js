@@ -1,5 +1,8 @@
 // src/components/ListSessoes.js
 import { useEffect, useState } from 'react';
+import './ListSessoes.css';
+
+const BASE_URL_API = "http://187.64.75.162:3001";
 
 function ListSessoes() {
   const [sessoes, setSessoes] = useState([]);
@@ -7,7 +10,7 @@ function ListSessoes() {
   useEffect(() => {
     const fetchSessoes = async () => {
       try {
-        const response = await fetch('/sessoes'); // Faz uma requisição para a API
+        const response = await fetch(`${BASE_URL_API}/sessoes`);
         const data = await response.json();
         setSessoes(data);
       } catch (error) {
@@ -18,17 +21,35 @@ function ListSessoes() {
     fetchSessoes();
   }, []);
 
+  const handleBack = () => {
+    console.log("Voltar clicado");
+    // Adicione lógica para navegação, se necessário
+  };
+
   return (
-    <div>
-      <h2>Lista de Sessões</h2>
-      <ul>
-        {sessoes.map((sessao) => (
-          <li key={sessao.id}>
-            <p>Local: {sessao.local}</p>
-            <p>Número: {sessao.numero}</p>
-          </li>
-        ))}
-      </ul>
+    <div className="list-sessoes-container">
+      <h2>Lista de Seções</h2>
+      <button onClick={handleBack} className="back-button">
+        Voltar
+      </button>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Local</th>
+            <th>Número</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sessoes.map((sessao) => (
+            <tr key={sessao.id}>
+              <td>{sessao.id}</td>
+              <td>{sessao.local}</td>
+              <td>{sessao.numero}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

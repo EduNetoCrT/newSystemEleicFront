@@ -43,7 +43,7 @@ function Sidebar() {
       </h3>
       <ul style={{ display: expandedSection === 'secoes' ? 'block' : 'none' }}>
         <li><Link to="/create-sessao">NOVA SEÇÃO</Link></li>
-        <li><Link to="/list-sessoes">LISTAR SEÇÕES</Link></li>
+        <li><Link to="/list-secoes">LISTAR SEÇÕES</Link></li>
       </ul>
 
       <h3 onClick={() => toggleSection('usuarios')}>

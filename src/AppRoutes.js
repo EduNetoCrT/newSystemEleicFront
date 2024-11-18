@@ -5,6 +5,7 @@ import SidebarLayout from "./components/layouts/SidebarLayout";
 import Dashboard from "./components/Dashboard";
 import CreatePresenca from "./components/CreatePresenca";
 import CreateSessao from "./components/CreateSessao";
+import ListSessoes from "./components/ListSessoes";
 import CreateEleitor from "./pages/Associados/CreateEleitor";
 import CreateUser from "./pages/Users/CreateUser";
 import ConsultarEleitor from "./pages/Associados/ConsultarEleitor";
@@ -73,7 +74,10 @@ function AppRoutes() {
             path="/list-nao-confirmados"
             element={<ListNaoConfirmados />}
           />
-
+          <Route
+            path="/list-secoes"
+            element={<ListSessoes />}
+          />
           <Route
             path="/presenca-count"
             element={<PresencaCountBySessao />}

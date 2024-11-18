@@ -1,12 +1,10 @@
-// src/services/associadoService.js
-import axios from "axios";
+import api from "./api";
 
-const BASE_URL_API = "http://179.154.75.165:3001";
-const API_URL = `${BASE_URL_API}/eleitores`;
+const RESOURCE = "eleitores";
 
 export const getAssociadoByMatricula = async (matricula) => {
   try {
-    const response = await axios.get(`${API_URL}/${matricula}`);
+    const response = await api.get(`${RESOURCE}/${matricula}`);
     return response.data;
   } catch (error) {
     if (error.response && error.response.status === 404) {
@@ -18,7 +16,7 @@ export const getAssociadoByMatricula = async (matricula) => {
 
 export const createAssociado = async (associadoData) => {
   try {
-    const response = await axios.post(API_URL, associadoData);
+    const response = await api.post(RESOURCE, associadoData);
     return response.data;
   } catch (error) {
     throw error.response?.data?.message || "Erro ao criar associado";
@@ -27,7 +25,7 @@ export const createAssociado = async (associadoData) => {
 
 export const updateAssociado = async (matricula, associadoData) => {
   try {
-    const response = await axios.put(`${API_URL}/${matricula}`, associadoData);
+    const response = await api.put(`${RESOURCE}/${matricula}`, associadoData);
     return response.data;
   } catch (error) {
     throw error.response?.data?.message || "Erro ao atualizar associado";
@@ -36,7 +34,7 @@ export const updateAssociado = async (matricula, associadoData) => {
 
 export const getAllAssociados = async () => {
   try {
-    const response = await axios.get(API_URL);
+    const response = await api.get(RESOURCE);
     return response.data;
   } catch (error) {
     throw new Error(
@@ -47,7 +45,7 @@ export const getAllAssociados = async () => {
 
 export const deleteAssociado = async (matricula) => {
   try {
-    await axios.delete(`${API_URL}/${matricula}`);
+    await api.delete(`${RESOURCE}/${matricula}`);
     return "Eleitor excluído com sucesso!";
   } catch (error) {
     throw new Error(error.response?.data?.message || "Erro ao deletar eleitor");
@@ -57,7 +55,7 @@ export const deleteAssociado = async (matricula) => {
 // Atualização com observação para a mudança de status do associado
 export const updateAssociadoStatus = async (matricula, status, observacao = "") => {
   try {
-    const response = await axios.put(`${API_URL}/status`, {
+    const response = await api.put(`${RESOURCE}/status`, {
       matricula,
       status,
       observacao,
