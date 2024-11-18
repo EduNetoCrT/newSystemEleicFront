@@ -1,10 +1,19 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import SidebarLayout from "./layouts/SidebarLayout";
 
 function ProtectedRoute({ children }) {
   const { isAuthenticated } = useAuth();
 
-  return isAuthenticated ? children : <Navigate to="/login" />;
+  if (!isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
+
+  return (
+    <SidebarLayout>
+      <Outlet />
+    </SidebarLayout>
+  );
 }
 
 export default ProtectedRoute;

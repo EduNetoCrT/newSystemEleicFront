@@ -20,152 +20,76 @@ import ListPresencas from "./components/ListPresencas";
 import PresencaCountBySessao from "./components/PresencaCountBySessao";
 
 function AppRoutes() {
-    return (
-      <Router>
-        <Routes>
-          <Route path="/login" element={<Login />} />
+  return (
+    <Router>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<ProtectedRoute />}>
           <Route
             path="/"
-            element={
-              <ProtectedRoute>
-                <SidebarLayout>
-                  <Dashboard />
-                </SidebarLayout>
-              </ProtectedRoute>
-            }
+            element={<Dashboard />}
           />
           <Route
             path="/create-eleitor"
-            element={
-              <ProtectedRoute>
-                <SidebarLayout>
-                  <CreateEleitor />
-                </SidebarLayout>
-              </ProtectedRoute>
-            }
+            element={<CreateEleitor />}
           />
           <Route
             path="/create-user"
-            element={
-              <ProtectedRoute>
-                <SidebarLayout>
-                  <CreateUser />
-                </SidebarLayout>
-              </ProtectedRoute>
-            }
+            element={<CreateUser />}
           />
           <Route
             path="/create-presenca"
-            element={
-              <ProtectedRoute>
-                <SidebarLayout>
-                  <CreatePresenca />
-                </SidebarLayout>
-              </ProtectedRoute>
-            }
+            element={<CreatePresenca />}
           />
           <Route
             path="/create-sessao"
-            element={
-              <ProtectedRoute>
-                <SidebarLayout>
-                  <CreateSessao />
-                </SidebarLayout>
-              </ProtectedRoute>
-            }
+            element={<CreateSessao />}
           />
           <Route
             path="/update-eleitor"
-            element={
-              <ProtectedRoute>
-                <SidebarLayout>
-                  <UpdateEleitor />
-                </SidebarLayout>
-              </ProtectedRoute>
-            }
+            element={<UpdateEleitor />}
           />
           <Route
             path="/list-eleitores"
-            element={
-              <ProtectedRoute>
-                <SidebarLayout>
-                  <ListEleitores />
-                </SidebarLayout>
-              </ProtectedRoute>
-            }
+            element={<ListEleitores />}
           />
           <Route
             path="/update-status"
-            element={
-              <ProtectedRoute>
-                <SidebarLayout>
-                  <UpdateStatus />
-                </SidebarLayout>
-              </ProtectedRoute>
-            }
+            element={<UpdateStatus />}
           />
           <Route
             path="/list-usuarios"
-            element={
-              <ProtectedRoute>
-                <SidebarLayout>
-                  <ListUsers />
-                </SidebarLayout>
-              </ProtectedRoute>
-            }
+            element={<ListUsers />}
           />
           <Route
             path="/consultar-eleitor"
-            element={
-              <ProtectedRoute>
-                <SidebarLayout>
-                  <ConsultarEleitor />
-                </SidebarLayout>
-              </ProtectedRoute>
-            }
+            element={<ConsultarEleitor />}
           />
           <Route
             path="/list-presencas"
-            element={
-              <ProtectedRoute>
-                <SidebarLayout>
-                  <ListPresencas />
-                </SidebarLayout>
-              </ProtectedRoute>
-            }
+            element={<ListPresencas />}
           />
           <Route
             path="/list-nao-confirmados"
-            element={
-              <ProtectedRoute>
-                <SidebarLayout>
-                  <ListNaoConfirmados />
-                </SidebarLayout>
-              </ProtectedRoute>
-            }
+            element={<ListNaoConfirmados />}
           />
 
           <Route
-          path="/presenca-count"
-          element={
-            <ProtectedRoute>
-              <SidebarLayout>
-                <PresencaCountBySessao />
-              </SidebarLayout>
-            </ProtectedRoute>
-          }
+            path="/presenca-count"
+            element={<PresencaCountBySessao />}
           />
+        </Route>
 
 
-  
-          {/* Rota para a página de Not Implemented */}
-          <Route path="/not-implemented" element={<NotImplemented />} />
-  
-          {/* Rota catch-all para Not Found */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Router>
-    );
-  }
-  
-  export default AppRoutes;
+
+        {/* Rota para a página de Not Implemented */}
+        <Route path="/not-implemented" element={<NotImplemented />} />
+
+        {/* Rota catch-all para Not Found */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
+  );
+}
+
+export default AppRoutes;
