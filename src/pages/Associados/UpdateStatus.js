@@ -9,7 +9,7 @@ function UpdateStatus() {
   const [matricula, setMatricula] = useState("");
   const [eleitor, setEleitor] = useState(null);
   const [status, setStatus] = useState("");
-  const [observacao, setObservacao] = useState("");  // Novo estado para observação
+  const [observacao, setObservacao] = useState(""); // Novo estado para observação
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
 
@@ -19,6 +19,7 @@ function UpdateStatus() {
       const data = await getAssociadoByMatricula(matricula);
       setEleitor(data);
       setStatus(data.status);
+      setObservacao(data.observacao || ""); // Carregar observação existente, se houver
     } catch (error) {
       setModalMessage(error.message);
       setShowModal(true);
@@ -32,11 +33,13 @@ function UpdateStatus() {
       if (status === "INAPTO" && !observacao) {
         setModalMessage("É necessário preencher a observação para status INAPTO.");
         setShowModal(true);
-        return; // Não atualiza se a observação não for preenchida
+        return;
       }
 
+      // Atualiza o status e observação no banco
       await updateAssociadoStatus(matricula, status, observacao);
-      setModalMessage("Status atualizado com sucesso!");
+
+      setModalMessage("Status e observação atualizados com sucesso!");
       setShowModal(true);
     } catch (error) {
       setModalMessage(error.message);
@@ -79,18 +82,14 @@ function UpdateStatus() {
             <option value="INAPTO">INAPTO</option>
           </select>
 
-          {/* Renderiza o campo de observação apenas se o status for INAPTO */}
-          {status === "INAPTO" && (
-            <div className="observacao-container">
-              <label htmlFor="observacao">Observação:</label>
-              <textarea
-                id="observacao"
-                value={observacao}
-                onChange={(e) => setObservacao(e.target.value)}
-                required
-              />
-            </div>
-          )}
+          <div className="observacao-container">
+            <label htmlFor="observacao">Observação:</label>
+            <textarea
+              id="observacao"
+              value={observacao}
+              onChange={(e) => setObservacao(e.target.value)} // Atualiza o estado
+            />
+          </div>
 
           <button type="submit">Atualizar Status</button>
         </form>

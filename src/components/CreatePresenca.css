@@ -6,7 +6,7 @@
   justify-content: flex-start;
   align-items: center;
   min-height: 100vh;
-  padding-top: 50px;
+  padding-top: 20px; /* Diminuído de 50px para 20px */
   background-color: #f9f9f9;
   color: #333;
   padding: 20px;

@@ -1,48 +1,63 @@
+/* Estilos atualizados para o formulário de Create Eleitor */
 .create-eleitor-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* Ajustado para começar do topo */
   align-items: center;
-  height: 100%; /* Ocupa a altura total do contêiner pai */
+  min-height: 100vh; /* Igual ao Update Status */
+  padding-top: 50px;
   background-color: white; /* Fundo branco */
   color: red; /* Texto vermelho */
   padding: 20px;
 }
 
-.form-title {
-  margin-bottom: 20px; /* Espaço abaixo do título */
-  text-align: center; /* Centraliza o texto */
-}
-
 .create-eleitor-form {
   display: flex;
   flex-direction: column;
-  background-color: white; /* Fundo branco do formulário */
+  background-color: white; /* Fundo branco */
   padding: 20px;
   border: 1px solid red; /* Borda vermelha */
   border-radius: 8px; /* Bordas arredondadas */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  width: 350px; /* Aumentei a largura do formulário */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra */
+  width: 300px; /* Igual ao Update Status */
 }
 
 .create-eleitor-form input,
 .create-eleitor-form select,
-.create-eleitor-form button {
+.create-eleitor-form button,
+.create-eleitor-form textarea {
   margin: 10px 0;
   padding: 10px;
   border: 1px solid red; /* Borda vermelha */
   border-radius: 4px; /* Bordas arredondadas */
+  font-size: 14px;
 }
 
 .create-eleitor-form button {
-  background-color: red; /* Fundo vermelho do botão */
-  color: white; /* Texto do botão branco */
+  background-color: red; /* Fundo vermelho */
+  color: white; /* Texto branco */
   cursor: pointer;
+  font-size: 14px; /* Tamanho da fonte */
+  padding: 10px; /* Mesma proporção de Update Status */
 }
 
 .back-button {
   margin-top: 10px;
-  padding: 8px 16px;
-  font-size: 14px;
+  background-color: transparent; /* Fundo transparente */
+  border: none; /* Sem borda */
+  color: red; /* Texto vermelho */
   cursor: pointer;
+  font-size: 14px;
+}
+
+/* Campo de texto com redimensionamento */
+.create-eleitor-form textarea {
+  min-width: 283px; /* Alinhado ao Update Status */
+  min-height: 110px;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid red;
+  border-radius: 4px;
+  font-size: 14px;
+  resize: both; /* Permite redimensionar */
 }
