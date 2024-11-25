@@ -72,6 +72,11 @@ function CreatePresenca() {
 
   const closeModal = () => {
     setShowModal(false);
+    if (eleitor?.status === 'INAPTO' || eleitor?.votou) {
+      // Se o eleitor for inapto ou já tiver votado, reinicia o estado
+      setEleitor(null);
+      setMatricula('');
+    }
   };
 
   const handleObservacaoClick = () => {
@@ -82,23 +87,25 @@ function CreatePresenca() {
     <div className="create-presenca-container">
       <h2 className="form-title">Registrar Presença</h2>
 
-      <form onSubmit={handleSearch} className="create-presenca-form">
-        <input
-          type="text"
-          placeholder="Matrícula"
-          value={matricula}
-          onChange={(e) => setMatricula(e.target.value)}
-          required
-        />
-        <button type="submit">Consultar</button>
-      </form>
+      {!eleitor && (
+        <form onSubmit={handleSearch} className="create-presenca-form">
+          <input
+            type="text"
+            placeholder="Matrícula"
+            value={matricula}
+            onChange={(e) => setMatricula(e.target.value)}
+            required
+          />
+          <button type="submit">Consultar</button>
+        </form>
+      )}
 
       {eleitor && eleitor.status === 'APTO' && !eleitor.votou && (
         <form onSubmit={handleRegister} className="create-presenca-form">
           <input type="text" value={eleitor.matricula} readOnly />
           <input type="text" value={eleitor.nome} readOnly />
-          <input type="text" value={eleitor.cpf} readOnly />
           <input type="text" value={eleitor.patente} readOnly />
+          <input type="text" value={eleitor.id} readOnly />
 
           <input
             type="text"
@@ -117,10 +124,9 @@ function CreatePresenca() {
           <div className="modal-content">
             <p>{modalMessage}</p>
             {eleitor && eleitor.status === 'INAPTO' && (
-  <button onClick={handleObservacaoClick} className="observacao-button">Observação</button> 
-)}
-<button onClick={closeModal}>Fechar</button>
-
+              <button onClick={handleObservacaoClick} className="observacao-button">Observação</button>
+            )}
+            <button onClick={closeModal}>Fechar</button>
           </div>
         </div>
       )}

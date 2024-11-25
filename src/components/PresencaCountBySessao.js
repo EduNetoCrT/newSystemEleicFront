@@ -68,14 +68,14 @@ function PresencaCountBySessao() {
 
   return (
     <div className="presenca-count-container">
-      <h2>Contagem de Presenças por Seção</h2>
+      <h2>Contagem de Presenças por Sessão</h2>
       <button onClick={handleBack} className="back-button">Voltar</button>
       
       {/* Card para cada sessão */}
       <div className="sessao-cards">
         {sessaoCounts.map((sessao) => (
           <div key={sessao.sessaoId} className="sessao-card">
-            <h3>Seção: {sessao.sessaoId}</h3>
+            <h3>Sessão: {sessao.sessaoId}</h3>
             <p><strong>Local:</strong> {sessao.local}</p>
             <p><strong>Quantidade de Presenças:</strong> {sessao.presencaCount}</p>
           </div>

@@ -65,7 +65,6 @@ function ListEleitores() {
             <th>Patente</th>
             <th>Status</th>
             <th>Votou</th>
-            <th>Ações</th>
           </tr>
         </thead>
         <tbody>
@@ -80,11 +79,7 @@ function ListEleitores() {
               <td style={{ color: eleitor.votou ? "green" : "red" }}>
                 {eleitor.votou ? "Confirmado" : "Não Confirmado"}
               </td>
-              <td>
-                <button onClick={() => handleDelete(eleitor.matricula)}>
-                  Excluir
-                </button>
-              </td>
+              
             </tr>
           ))}
         </tbody>

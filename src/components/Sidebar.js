@@ -35,25 +35,25 @@ function Sidebar() {
         <li><Link to="/create-eleitor">NOVO ASSOCIADO</Link></li>
         <li><Link to="/consultar-eleitor">CONSULTAR ASSOCIADO</Link></li>
         <li><Link to="/list-eleitores">LISTAR ASSOCIADOS</Link></li>
-        <li><Link to="/update-status">MUDAR STATUS DO ASSOCIADO</Link></li>
+        {/* <li><Link to="/update-status">MUDAR STATUS DO ASSOCIADO</Link></li> */}
       </ul>
 
-      <h3 onClick={() => toggleSection('secoes')}>
+      {/* <h3 onClick={() => toggleSection('secoes')}>
         <span className={`expand-icon ${expandedSection === 'secoes' ? '' : 'collapsed'}`}>&#9654;</span>SEÇÕES
       </h3>
       <ul style={{ display: expandedSection === 'secoes' ? 'block' : 'none' }}>
         <li><Link to="/create-sessao">NOVA SEÇÃO</Link></li>
         <li><Link to="/list-secoes">LISTAR SEÇÕES</Link></li>
-      </ul>
+      </ul> */}
 
-      <h3 onClick={() => toggleSection('usuarios')}>
+      {/* <h3 onClick={() => toggleSection('usuarios')}>
         <span className={`expand-icon ${expandedSection === 'usuarios' ? '' : 'collapsed'}`}>&#9654;</span>USUÁRIOS
       </h3>
       <ul style={{ display: expandedSection === 'usuarios' ? 'block' : 'none' }}>
         <li><Link to="/create-user">NOVO USUÁRIO</Link></li>
         <li><Link to="/edit-usuario">EDITAR USUÁRIO</Link></li>
         <li><Link to="/list-usuarios">LISTAR USUÁRIOS</Link></li>
-      </ul>
+      </ul> */}
     </div>
   );
 }
