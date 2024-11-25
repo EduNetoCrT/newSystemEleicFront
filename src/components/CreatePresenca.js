@@ -3,6 +3,8 @@ import axios from 'axios';
 import { jwtDecode } from 'jwt-decode'; // Importando jwt-decode para decodificar o token
 import './CreatePresenca.css';
 
+const BASE_URL_API = process.env.REACT_APP_API_URL || "http://localhost:3001";
+
 function CreatePresenca() {
   const [matricula, setMatricula] = useState('');
   const [eleitor, setEleitor] = useState(null);
@@ -24,7 +26,7 @@ function CreatePresenca() {
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://187.64.75.162:3001/eleitores/${matricula}`);
+      const response = await fetch(`${BASE_URL_API}/eleitores/${matricula}`);
       if (response.ok) {
         const data = await response.json();
         setEleitor(data);
@@ -55,7 +57,7 @@ function CreatePresenca() {
     }
 
     try {
-      const response = await axios.post('http://187.64.75.162:3001/presencas', {
+      const response = await axios.post('${BASE_API_URL}/presencas', {
         local,
         eleitorMatricula: eleitor.matricula,
       });

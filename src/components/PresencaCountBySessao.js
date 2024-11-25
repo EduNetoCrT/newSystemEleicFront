@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './PresencaCountBySessao.css';
 
-const BASE_URL_API = "http://187.64.75.162:3001";
+const BASE_URL_API = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
 const initialSessaoCounts = [
   { sessaoId: 1, local: "João Pessoa", presencaCount: 0 },

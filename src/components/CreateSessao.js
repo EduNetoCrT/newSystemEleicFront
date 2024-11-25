@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './CreateSessao.css';
 
-const BASE_URL_API = "http://187.64.75.162:3001";
+const BASE_URL_API = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
 function CreateSessao() {
   const [formData, setFormData] = useState({

@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import './ListNaoConfirmados.css';
 import { useNavigate } from 'react-router-dom';
 
+const BASE_URL_API = process.env.REACT_APP_API_URL || "http://localhost:3001";
+
 function ListNaoConfirmados() {
   const [eleitores, setEleitores] = useState([]);
   const navigate = useNavigate();
@@ -10,7 +12,7 @@ function ListNaoConfirmados() {
   useEffect(() => {
     const fetchEleitores = async () => {
       try {
-        const response = await fetch('http://187.64.75.162:3001/eleitores');
+        const response = await fetch(`${BASE_URL_API}/eleitores`);
         if (response.ok) {
           const data = await response.json();
           // Filtra apenas os eleitores que ainda não votaram
@@ -35,7 +37,7 @@ function ListNaoConfirmados() {
     if (!confirmDelete) return;
 
     try {
-      const response = await fetch(`http://187.64.75.162:3001/eleitores/${matricula}`, {
+      const response = await fetch(`${BASE_URL_API}/eleitores/${matricula}`, {
         method: 'DELETE',
       });
 
