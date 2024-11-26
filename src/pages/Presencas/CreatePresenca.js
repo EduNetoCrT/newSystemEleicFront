@@ -1,34 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { jwtDecode } from 'jwt-decode'; // Importando jwt-decode para decodificar o token
 import './CreatePresenca.css';
-
-const BASE_URL_API = process.env.REACT_APP_API_URL || "http://179.154.75.165:3001";
+import { useState } from 'react';
+import { createPresenca } from '../../services/presencasService';
+import { getEleitorByMatricula } from '../../services/eleitorService';
+import useUserInfo from '../../hooks/useUserInfo';
 
 function CreatePresenca() {
+  const { secaoId, userSecao } = useUserInfo();
   const [matricula, setMatricula] = useState('');
   const [eleitor, setEleitor] = useState(null);
-  const [local, setLocal] = useState(''); // Inicialmente vazio, mas será preenchido com a sessão do usuário
+  // const [local, setLocal] = useState(''); // Inicialmente vazio, mas será preenchido com a sessão do usuário
   const [message, setMessage] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const [observacao, setObservacao] = useState(''); // Estado para armazenar a observação do eleitor
 
-  useEffect(() => {
-    // Decodifica o token JWT para obter a sessão do usuário
-    const token = localStorage.getItem('token'); // Presumindo que o token está armazenado no localStorage após o login
-    if (token) {
-      const decodedToken = jwtDecode(token);
-      setLocal(decodedToken.secao); // Define a sessão do usuário logado no campo "local"
-    }
-  }, []);
-
   const handleSearch = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${BASE_URL_API}/eleitores/${matricula}`);
-      if (response.ok) {
-        const data = await response.json();
+      const data = await getEleitorByMatricula(matricula);
+      if (data) {
         setEleitor(data);
         setMessage('');
 
@@ -57,14 +47,14 @@ function CreatePresenca() {
     }
 
     try {
-      const response = await axios.post(`${BASE_URL_API}/presencas`, {
-        local,
+      await createPresenca({
+        secaoId,
         eleitorMatricula: eleitor.matricula,
       });
       setModalMessage('Presença registrada com sucesso!');
       setShowModal(true);
 
-      setLocal(''); // Limpa o campo após o registro
+      // setLocal(''); // Limpa o campo após o registro
       setEleitor(null);
       setMatricula('');
     } catch (error) {
@@ -112,7 +102,7 @@ function CreatePresenca() {
           <input
             type="text"
             placeholder="Local da Sessão"
-            value={local}
+            value={userSecao}
             readOnly // Campo de local agora preenchido automaticamente e somente leitura
           />
           <button type="submit">Registrar Presença</button>

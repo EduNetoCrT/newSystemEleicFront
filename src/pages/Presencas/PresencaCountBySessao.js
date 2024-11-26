@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './PresencaCountBySessao.css';
+import { getAllPresencas } from "../../services/presencasService";
+import { getAllEleitores } from "../../services/eleitorService";
 
 const BASE_URL_API = process.env.REACT_APP_API_URL || "http://179.154.75.165:3001";
 
@@ -36,7 +38,7 @@ function PresencaCountBySessao() {
         }
 
         // Requisição para total de presenças confirmadas
-        const responseConfirmadas = await fetch(`${BASE_URL_API}/presencas`);
+        const responseConfirmadas = await getAllPresencas();
         if (responseConfirmadas.ok) {
           const dataConfirmadas = await responseConfirmadas.json();
           const confirmadasCount = dataConfirmadas.filter(presenca => presenca.eleitor.votou).length;
@@ -46,7 +48,7 @@ function PresencaCountBySessao() {
         }
 
         // Requisição para total de presenças não confirmadas
-        const responseNaoConfirmadas = await fetch(`${BASE_URL_API}/eleitores`);
+        const responseNaoConfirmadas = await getAllEleitores();
         if (responseNaoConfirmadas.ok) {
           const dataNaoConfirmadas = await responseNaoConfirmadas.json();
           const naoConfirmadasCount = dataNaoConfirmadas.filter(eleitor => !eleitor.votou).length;

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './CreateSessao.css';
+import { createSecao } from '../../services/secoesService';
 
 const BASE_URL_API = process.env.REACT_APP_API_URL || "http://179.154.75.165:3001";
 
@@ -27,10 +28,9 @@ function CreateSessao() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${BASE_URL_API}/sessoes`, formData); // URL da API
+      const response = await createSecao(formData);
       alert(response.data.message);
 
-      // Limpa os dados do formulário após sucesso
       setFormData({
         local: '',
         numero: '',

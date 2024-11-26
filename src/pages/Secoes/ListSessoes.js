@@ -1,8 +1,7 @@
 // src/components/ListSessoes.js
 import { useEffect, useState } from 'react';
 import './ListSessoes.css';
-
-const BASE_URL_API = process.env.REACT_APP_API_URL || "http://179.154.75.165:3001";
+import { getAllSecoes } from '../../services/secoesService';
 
 function ListSessoes() {
   const [sessoes, setSessoes] = useState([]);
@@ -10,9 +9,8 @@ function ListSessoes() {
   useEffect(() => {
     const fetchSessoes = async () => {
       try {
-        const response = await fetch(`${BASE_URL_API}/sessoes`);
-        const data = await response.json();
-        setSessoes(data);
+        const response = await getAllSecoes();
+        setSessoes(response);
       } catch (error) {
         console.error("Erro ao buscar sessões:", error);
       }

@@ -1,11 +1,9 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
-
-import SidebarLayout from "./components/layouts/SidebarLayout";
 import Dashboard from "./components/Dashboard";
-import CreatePresenca from "./components/CreatePresenca";
-import CreateSessao from "./components/CreateSessao";
-import ListSessoes from "./components/ListSessoes";
+import CreatePresenca from "./pages/Presencas/CreatePresenca";
+import CreateSessao from "./pages/Secoes/CreateSessao";
+import ListSessoes from "./pages/Secoes/ListSessoes";
 import CreateEleitor from "./pages/Associados/CreateEleitor";
 import CreateUser from "./pages/Users/CreateUser";
 import ConsultarEleitor from "./pages/Associados/ConsultarEleitor";
@@ -16,13 +14,13 @@ import NotFound from "./pages/system/NotFound/NotFound";
 import NotImplemented from "./pages/system/NotImplemented/NotImplemented";
 import Login from "./pages/Auth/Login";
 import ListUsers from "./pages/Users/ListUsers";
-import ListNaoConfirmados from "./components/ListNaoConfirmados";
-import ListPresencas from "./components/ListPresencas";
-import PresencaCountBySessao from "./components/PresencaCountBySessao";
+import ListPresencas from "./pages/Presencas/ListPresencas";
+import PresencaCountBySessao from "./pages/Presencas/PresencaCountBySessao";
 import Atas from "./components/Atas";
 import EditaisPortarias from "./components/EditaisPortarias";
 import RegistrarVotos from "./pages/Resultados/RegistarVotos";
 import ResumoDosVotos from "./pages/Resultados/ResumoDosVotos";
+import ListNaoConfirmados from "./pages/Presencas/ListNaoConfirmados";
 
 function AppRoutes() {
   return (
