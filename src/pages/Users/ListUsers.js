@@ -13,6 +13,8 @@ function ListUsers() {
   const fetchUsers = async () => {
     try {
       const data = await getUsers();
+      console.log(data);
+      
       setUsers(data);
     } catch (error) {
       console.error("Erro ao buscar usuários:", error);
@@ -71,7 +73,7 @@ function ListUsers() {
                 <td>{user.id}</td>
                 <td>{user.email}</td>
                 <td className="user-name">{user.name}</td>
-                <td>{user.secao}</td>
+                <td>{user.secao.local}</td>
                 <td>
                   <button onClick={() => handleDeleteClick(user.id)}>
                     Excluir
