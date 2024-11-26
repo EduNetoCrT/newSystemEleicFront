@@ -14,6 +14,7 @@ export function AuthProvider({ children }) {
       setUser({
         name: decodedToken.name || "Usuário",
         secao: decodedToken.secao || "N/A",
+        secaoId: decodedToken.secao.id || "N/A",
       });
       setIsAuthenticated(true);
       localStorage.setItem("token", token);

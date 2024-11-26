@@ -21,6 +21,8 @@ import ListPresencas from "./components/ListPresencas";
 import PresencaCountBySessao from "./components/PresencaCountBySessao";
 import Atas from "./components/Atas";
 import EditaisPortarias from "./components/EditaisPortarias";
+import RegistrarVotos from "./pages/Resultados/RegistarVotos";
+import ResumoDosVotos from "./pages/Resultados/ResumoDosVotos";
 
 function AppRoutes() {
   return (
@@ -84,12 +86,21 @@ function AppRoutes() {
             path="/presenca-count"
             element={<PresencaCountBySessao />}
           />
+          {/* Links de Resultados */}
+          <Route
+            path="/registrar-votos"
+            element={<RegistrarVotos />} />
+          <Route
+            path="/resumo-dos-votos"
+            element={<ResumoDosVotos />} />
+
+          {/* Links de Úteis */}
           <Route
             path="/atas-eleicoes-2024"
-            element={<Atas />}/>
+            element={<Atas />} />
           <Route
-           path="editais-portarias"
-           element={ <EditaisPortarias/>}/>
+            path="editais-portarias"
+            element={<EditaisPortarias />} />
         </Route>
 
 
