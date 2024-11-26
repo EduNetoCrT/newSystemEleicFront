@@ -57,7 +57,7 @@ function CreatePresenca() {
     }
 
     try {
-      const response = await axios.post('${BASE_API_URL}/presencas', {
+      const response = await axios.post(`${BASE_URL_API}/presencas`, {
         local,
         eleitorMatricula: eleitor.matricula,
       });
