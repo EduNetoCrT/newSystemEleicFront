@@ -14,7 +14,7 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <img src={logo} alt="Logo_2" className="logo_2" />
-      
+
       <h3 onClick={() => toggleSection('presencas')}>
         <span className={`expand-icon ${expandedSection === 'presencas' ? '' : 'collapsed'}`}>&#9654;</span>PRESENÇAS
       </h3>
@@ -33,6 +33,14 @@ function Sidebar() {
         <li><Link to="/consultar-eleitor">CONSULTAR ASSOCIADO</Link></li>
         <li><Link to="/list-eleitores">LISTAR ASSOCIADOS</Link></li>
         {/* <li><Link to="/update-status">MUDAR STATUS DO ASSOCIADO</Link></li> */}
+      </ul>
+
+      <h3 onClick={() => toggleSection('resultados')}>
+        <span className={`expand-icon ${expandedSection === 'resultados' ? '' : 'collapsed'}`}>&#9654;</span>RESULTADOS
+      </h3>
+      <ul style={{ display: expandedSection === 'resultados' ? 'block' : 'none' }}>
+        <li><Link to="/registrar-votos">Registrar Votos</Link></li>
+        <li><Link to="/resumo-dos-votos">Resumo da Votação</Link></li>
       </ul>
 
       <h3 onClick={() => toggleSection('uteis')}>
