@@ -27,7 +27,7 @@ export const getResultados = async () => {
 export const addVotes = async (votos) => {
   try {
     // Filtra votos com quantidade maior que zero
-    const votosValidos = votos.filter((voto) => voto.quantidade > 0);
+    const votosValidos = votos.filter((voto) => voto.quantidade >= 0);
 
     // Retorna um erro se não houver votos válidos
     if (votosValidos.length === 0) {
