@@ -1,21 +1,38 @@
-// src/components/CreateUser.js
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { createUser } from "../../services/userService"; // Importa o serviço
+import { createUser } from "../../services/userService"; // Serviço para criar usuário
 import "./CreateUser.css";
+import { getAllSecoes } from "../../services/secoesService";
 
 function CreateUser() {
   const [formData, setFormData] = useState({
     email: "",
     name: "",
     password: "",
-    secao: "",
+    secaoId: "",
   });
 
+  const [secoes, setSecoes] = useState([]); // Lista de seções para o dropdown
+  const [loadingSecoes, setLoadingSecoes] = useState(true);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchSecoes = async () => {
+      try {
+        const response = await getAllSecoes(); // Chamada para obter as seções
+        setSecoes(response); // Assume que response é uma lista de seções
+      } catch (error) {
+        console.error("Erro ao carregar as seções:", error);
+      } finally {
+        setLoadingSecoes(false);
+      }
+    };
+
+    fetchSecoes();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,7 +55,7 @@ function CreateUser() {
         email: "",
         name: "",
         password: "",
-        secao: "",
+        secaoId: "",
       });
     } catch (errorMessage) {
       setModalMessage(errorMessage);
@@ -86,14 +103,25 @@ function CreateUser() {
           required
           value={formData.password}
         />
-        <input
-          type="text"
-          name="secao"
-          placeholder="Seção"
-          onChange={handleChange}
-          required
-          value={formData.secao}
-        />
+        {loadingSecoes ? (
+          <p>Carregando seções...</p>
+        ) : (
+          <select
+            name="secaoId"
+            value={formData.secaoId}
+            onChange={handleChange}
+            required
+          >
+            <option value="" disabled>
+              Selecione uma seção
+            </option>
+            {secoes.map((secao) => (
+              <option key={secao.id} value={secao.id}>
+                {secao.local} - {secao.numero}
+              </option>
+            ))}
+          </select>
+        )}
         <button type="submit">Criar Usuário</button>
       </form>
       <button onClick={handleBack} className="back-button">
