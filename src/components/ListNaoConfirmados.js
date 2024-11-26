@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import './ListNaoConfirmados.css';
 import { useNavigate } from 'react-router-dom';
 
-const BASE_URL_API = process.env.REACT_APP_API_URL || "http://localhost:3001";
+const BASE_URL_API = process.env.REACT_APP_API_URL || "http://179.154.75.165:3001";
 
 function ListNaoConfirmados() {
   const [eleitores, setEleitores] = useState([]);

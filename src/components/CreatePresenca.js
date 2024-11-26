@@ -3,7 +3,7 @@ import axios from 'axios';
 import { jwtDecode } from 'jwt-decode'; // Importando jwt-decode para decodificar o token
 import './CreatePresenca.css';
 
-const BASE_URL_API = process.env.REACT_APP_API_URL || "http://localhost:3001";
+const BASE_URL_API = process.env.REACT_APP_API_URL || "http://179.154.75.165:3001";
 
 function CreatePresenca() {
   const [matricula, setMatricula] = useState('');
@@ -57,7 +57,7 @@ function CreatePresenca() {
     }
 
     try {
-      const response = await axios.post('${BASE_API_URL}/presencas', {
+      const response = await axios.post(`${BASE_URL_API}/presencas`, {
         local,
         eleitorMatricula: eleitor.matricula,
       });
