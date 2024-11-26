@@ -19,6 +19,8 @@ import ListUsers from "./pages/Users/ListUsers";
 import ListNaoConfirmados from "./components/ListNaoConfirmados";
 import ListPresencas from "./components/ListPresencas";
 import PresencaCountBySessao from "./components/PresencaCountBySessao";
+import Atas from "./components/Atas";
+import EditaisPortarias from "./components/EditaisPortarias";
 
 function AppRoutes() {
   return (
@@ -82,6 +84,12 @@ function AppRoutes() {
             path="/presenca-count"
             element={<PresencaCountBySessao />}
           />
+          <Route
+            path="/atas-eleicoes-2024"
+            element={<Atas />}/>
+          <Route
+           path="editais-portarias"
+           element={ <EditaisPortarias/>}/>
         </Route>
 
 
