@@ -4,25 +4,31 @@ import { addVotes, getAllChapas } from "../../services/resultadoService";
 import useUserInfo from "../../hooks/useUserInfo";
 
 const RegistrarVotos = () => {
-  const { secaoId } = useUserInfo(); // Obtém informações do usuário
+  const { secaoId } = useUserInfo();
   const [chapas, setChapas] = useState([]);
   const [votos, setVotos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [votosInvalidos, setVotosInvalidos] = useState(0);
 
   useEffect(() => {
     const fetchChapas = async () => {
       try {
         const response = await getAllChapas();
+
+        // Ordena candidatos por ID dentro de cada chapa
+        response.forEach((chapa) => {
+          chapa.candidatos.sort((a, b) => a.id - b.id);
+        });
+
         setChapas(response);
 
-        // Inicializar votos com candidatos zerados e associar à userSecao
+        // Inicializar votos com valores zerados
         const initialVotos = response.flatMap((chapa) =>
           chapa.candidatos.map((candidato) => ({
             candidatoId: candidato.id,
-            secaoId: secaoId, // Usa a seção do usuário
-            quantidade: 0,
+            secaoId: secaoId,
+            quantidade: "",
           }))
         );
         setVotos(initialVotos);
@@ -34,15 +40,29 @@ const RegistrarVotos = () => {
     };
 
     fetchChapas();
-  }, [secaoId]); // Atualiza caso a seção do usuário mude
+  }, [secaoId]);
 
   const handleVoteChange = (candidatoId, quantidade) => {
     setVotos((prev) =>
-      prev.map((voto) => voto.candidatoId === candidatoId
-        ? { ...voto, quantidade: Math.max(0, quantidade) }
-        : voto
+      prev.map((voto) =>
+        voto.candidatoId === candidatoId
+          ? { ...voto, quantidade: Math.max(0, quantidade) }
+          : voto
       )
     );
+  };
+
+  const calculateTotals = (candidatos) => {
+    const total = candidatos.reduce((acc, candidato) => {
+      const voto = votos.find((v) => v.candidatoId === candidato.id);
+      return acc + (voto?.quantidade || 0);
+    }, 0);
+
+    return { total, invalidos: votosInvalidos };
+  };
+
+  const handleInvalidVotesChange = (value) => {
+    setVotosInvalidos(Math.max(0, parseInt(value, 10) || 0));
   };
 
   const handleSubmit = async () => {
@@ -58,45 +78,82 @@ const RegistrarVotos = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className="votos-formulario">
+    <div className="votos-container">
       <h1>Registrar Votos</h1>
-      <form>
-        {chapas.map((chapa) => (
-          <div key={chapa.id} className="chapa">
-            <h2>{chapa.nome}</h2>
-            <ul>
-              {chapa.candidatos.map((candidato) => (
-                <li key={candidato.id} className="candidato">
-                  <div className="candidato-linha">
-                    <span className="funcao">{candidato.funcao}</span>
-                    <span className="matricula">{candidato.matricula}</span>
-                    <span className="nome">{candidato.nome}</span>
-                    <input
-                      type="number"
-                      className="input-votos"
-                      min="0"
-                      placeholder="Qtd"
-                      value={
-                        votos.find((voto) => voto.candidatoId === candidato.id)
-                          ?.quantidade || 0
-                      }
-                      onChange={(e) =>
-                        handleVoteChange(
-                          candidato.id,
-                          parseInt(e.target.value, 10) || 0
-                        )
-                      }
-                    />
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-        <button type="button" className="botao-enviar" onClick={handleSubmit}>
-          Enviar Votos
-        </button>
-      </form>
+      <div className="chapas-wrapper">
+        {chapas.map((chapa) => {
+          const { total, invalidos } = calculateTotals(chapa.candidatos);
+
+          return (
+            <div key={chapa.id} className="chapa-tabela">
+              <h2>{chapa.nome}</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Função</th>
+                    <th>Matrícula</th>
+                    <th>Nome</th>
+                    <th>Votos</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {chapa.candidatos.map((candidato) => (
+                    <tr key={candidato.id}>
+                      <td>{candidato.funcao}</td>
+                      <td>{candidato.matricula}</td>
+                      <td>{candidato.nome}</td>
+                      <td>
+                        <input
+                          type="number"
+                          className="input-votos"
+                          min="0"
+                          placeholder="-"
+                          value={
+                            votos.find((voto) => voto.candidatoId === candidato.id)
+                              ?.quantidade || ""
+                          }
+                          onChange={(e) =>
+                            handleVoteChange(
+                              candidato.id,
+                              parseInt(e.target.value, 10) || 0
+                            )
+                          }
+                        />
+                      </td>
+                    </tr>
+                  ))}
+                  {/* Linha de votos inválidos */}
+                  <tr>
+                    <td colSpan="3" className="invalidos-label">
+                      Votos Inválidos
+                    </td>
+                    <td>
+                      <input
+                        type="number"
+                        className="input-votos"
+                        min="0"
+                        placeholder="0"
+                        value={invalidos}
+                        onChange={(e) => handleInvalidVotesChange(e.target.value)}
+                      />
+                    </td>
+                  </tr>
+                  {/* Linha de total */}
+                  <tr>
+                    <td colSpan="3" className="total-label">
+                      Total
+                    </td>
+                    <td>{total + invalidos}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          );
+        })}
+      </div>
+      <button type="button" className="botao-enviar" onClick={handleSubmit}>
+        Enviar Votos
+      </button>
     </div>
   );
 };

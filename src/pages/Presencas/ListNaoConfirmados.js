@@ -4,7 +4,7 @@ import './ListNaoConfirmados.css';
 import { useNavigate } from 'react-router-dom';
 import { getAllEleitores } from '../../services/eleitorService';
 
-const BASE_URL_API = process.env.REACT_APP_API_URL || "http://179.154.75.165:3001";
+const BASE_URL_API = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
 function ListNaoConfirmados() {
   const [eleitores, setEleitores] = useState([]);
@@ -13,7 +13,7 @@ function ListNaoConfirmados() {
   useEffect(() => {
     const fetchEleitores = async () => {
       try {
-        const response = await getAllEleitores();
+        const response = await fetch('http://localhost:3001/eleitores');
         if (response.ok) {
           const data = await response.json();
           // Filtra apenas os eleitores que ainda não votaram
